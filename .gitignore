@@ -1,3 +1,4 @@
 #.gitignore
 # ignore config files
 *A.ipynb
+Airfoil Objects/

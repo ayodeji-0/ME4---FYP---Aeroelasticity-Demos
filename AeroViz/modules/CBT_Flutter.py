@@ -1,4 +1,5 @@
 # Imports
+import io
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -6,8 +7,9 @@ from matplotlib import cm
 import ipywidgets as widgets
 from ipywidgets import interact, interactive, fixed, interact_manual, FloatSlider, IntSlider, Dropdown, GridspecLayout, Checkbox
 from IPython.display import HTML, display, clear_output
+import streamlit as st
 
-from matplotlib.animation import FuncAnimation, PillowWriter
+from matplotlib.animation import FuncAnimation, PillowWriter, FFMpegWriter
 import scipy.linalg as la
 from matplotlib.patches import Polygon
 import matplotlib.transforms as transforms
@@ -28,6 +30,7 @@ class Airfoil:
         self.centrepos = centrepos
         self.coords = None
         self.code = None
+
     
     def generate_naca_airfoil4(self):
         """
@@ -105,17 +108,39 @@ class Airfoil:
         # Update the airfoil code
         self.code = f"{int(max_camber * 100)}{int(camber_pos * 10)}{int(thickness * 100):02d}"
     
-    def plot(self, show_chord=False):
+    def plot(self, show_chord=False, color='blue', alpha=0.6):
+        """
+        Plots the airfoil shape and fills the enclosed area with the specified color.
+        
+        Parameters:
+        - show_chord (bool): Whether to display the chord line.
+        - color (str or hex): Color of the filled airfoil.
+        - alpha (float): Transparency level of the fill (0 = fully transparent, 1 = opaque).
+        
+        Returns:
+        - fig: Matplotlib figure object.
+        """
+        if self.coords is None or len(self.coords) == 0:
+            raise ValueError("Airfoil coordinates are not initialized. Please generate them first.")
+
         fig, ax = plt.subplots()
-        ax.plot(self.coords[:, 0], self.coords[:, 1], 'k-', lw=2)
+
+        # Fill the enclosed airfoil shape
+        ax.fill(self.coords[:, 0], self.coords[:, 1], color=color, alpha=alpha, edgecolor='black', linewidth=2)
+
+        # Show chord line if requested
         if show_chord:
             ax.axhline(0, color='r', linestyle='--', lw=1)
-            ax.text(0.5, -0.05, 'Chord Line', color='r', ha='center')
+            ax.text(self.coords[:, 0].mean(), min(self.coords[:, 1]) - 0.05, 
+                    'Chord Line', color='r', ha='center')
+
+        # Formatting
         ax.set_aspect('equal', 'box')
-        ax.set_title(f"Airfoil {self.code} Plot")
+        fig.patch.set_facecolor('#0e1117')
+        #ax.set_title(f"Airfoil {self.code} Plot")
         ax.axis('off')
-        plt.show()
-        return fig
+
+        return fig  # Keep plt.show() outside the function
 
 # Define a class for the flutter analysis
 class FlutterAnalysis:
@@ -411,7 +436,11 @@ class FlutterAnalysis:
         """
         Animate the flutter response of a coupled system with the given parameters.
         """
-
+        
+            
+        anim_bar = st.progress(0, text= "Rendering Animation...")  # Store progress bar object
+        self.progress_bar = anim_bar  # Save to self for use in update() function
+                
         # Compute eigenvalues and eigenvectors
         # Compute eigenvalues and eigenvectors
         self.compute_response()
@@ -420,7 +449,7 @@ class FlutterAnalysis:
         lambda_vals = self.vals[:4]  # Select first 4 eigenvalues
         real_parts = np.real(lambda_vals)  # Gamma (damping)
         imag_parts = np.imag(lambda_vals)  # Omega (frequency)
-
+        
         # Extract the 4 eigenvector pairs (q_tidal)
         h_tidals = np.real(self.vecs[0, :4]) * self.b  # Extract real plunge displacements
         theta_tidals = np.real(self.vecs[1, :4])  # Extract real torsional displacements
@@ -432,7 +461,8 @@ class FlutterAnalysis:
         t = np.linspace(0, duration, duration * fps)
 
         # Set up figure with 2x2 grid for 4 modes
-        fig, axes = plt.subplots(4, 2, figsize=(14, 10), gridspec_kw={'width_ratios': [1.5, 1], 'height_ratios': [1, 1, 1, 1]})
+        fig, axes = plt.subplots(4, 2, figsize=(8, 8), gridspec_kw={'width_ratios': [1, 1], 'height_ratios': [1, 1, 1, 1]})
+        fig.set_size_inches(6, 8)  # Set figure size to 600 pixels wide (6 inches) and appropriate height
         fig.suptitle("Coupled Flutter Modes - Time Response", fontsize=14)
 
         # Precompute displacement histories for 4 eigenvector pairs
@@ -440,8 +470,14 @@ class FlutterAnalysis:
             h_tidals[i] * np.exp(real_parts[i] * t) * np.cos(imag_parts[i] * t) for i in range(4)
         ])
         theta_t = np.array([
-            theta_tidals[i] * np.exp(real_parts[i] * t) * np.cos(imag_parts[i] * t + phase_diffs[i]) for i in range(4)
-        ])
+                            np.clip(theta_tidals[i] * np.exp(real_parts[i] * t) * np.cos(imag_parts[i] * t + phase_diffs[i]), -np.pi, np.pi)
+                            for i in range(4)
+                        ]) # Ensure it stays in a reasonable range
+
+        # theta_t = np.array([
+        #     theta_tidals[i] * np.exp(real_parts[i] * t) * np.cos(imag_parts[i] * t + phase_diffs[i])
+        #     for i in range(4)
+        # ]) # Unclipped version - results in infinite values
 
         # Create 4 airfoil patches for animation (1 per row)
         airfoil_patches = []
@@ -469,26 +505,46 @@ class FlutterAnalysis:
             axes[i, 1].set_title(f"Mode {i+1} Amplitude & Phase Difference")
 
         # Function to update animation frames
+        # def update(frame):
+        #     for i in range(4):
+        #         trans = transforms.Affine2D().rotate_deg_around(self.a, 0, np.degrees(theta_t[i, frame])).translate(0, h_t[i, frame]) + axes[i, 0].transData
+        #         airfoil_patches[i].set_transform(trans)
+        #     return airfoil_patches
         def update(frame):
-            for i in range(4):
-                trans = transforms.Affine2D().rotate_deg_around(self.a, 0, np.degrees(theta_t[i, frame])).translate(0, h_t[i, frame]) + axes[i, 0].transData
-                airfoil_patches[i].set_transform(trans)
-            return airfoil_patches
+            # Compute progress as percentage
+            progress_value = int((frame / len(t)) * 100)
 
+            # Update progress bar dynamically
+            self.progress_bar.progress(progress_value, text= "Rendering Animation...")
+            for i in range(4): # Loop through each mode
+                theta_val = theta_t[i, frame]  # Extract theta value
+
+                # Debugging print statement
+                if not np.isfinite(theta_val):  # Check for NaN or Inf
+                    print(f"Warning: Invalid theta_t[{i}, {frame}] = {theta_val}")
+                # Ensure theta value is finite before applying transformation
+                if np.isfinite(theta_val):
+                    trans = transforms.Affine2D().rotate_deg_around(self.a, 0, np.degrees(theta_val)).translate(0, h_t[i, frame]) + axes[i, 0].transData
+                    airfoil_patches[i].set_transform(trans)
+
+            return airfoil_patches
         # Run the animation
         ani = FuncAnimation(fig, update, frames=len(t), blit=True, interval=1000 / fps)
 
-        plt.show()
-        return HTML(ani.to_jshtml())
 
+        anim = ani.to_jshtml()
 
+        anim_bar.empty()
+        self.progress = 0
+        return anim
 
 
     
         
 
 
-## Refactored code example using the classes defined above
+## Example Usage
+
 # Instantiate the Airfoil object
 airfoil = Airfoil(2, 5, 12)
 airfoil.generate_naca_airfoil4()
@@ -853,11 +909,11 @@ def animate_flutter(airfoil_coords, mu, sigma, V, a, b, e, r, mode='State Space'
     phase_diffs = np.angle(vecs[1] / vecs[0])
 
     fig, axs = plt.subplots(1, 2)
-    plt.figsize = (20, 20)
+
 
 
     # Add space between subplots
-    plt.subplots_adjust(wspace=0.75)
+    plt.subplots_adjust(wspace=0.9)
 
     t = np.linspace(0, duration, duration * fps)
 
@@ -919,7 +975,6 @@ def animate_flutter(airfoil_coords, mu, sigma, V, a, b, e, r, mode='State Space'
         return airfoil_patch, angle_text, vertical_text, axs[1].lines[0]
     
     ani = FuncAnimation(fig, update, frames=t, blit=True, interval=50)
-    plt.show()
     return HTML(ani.to_jshtml())
 
 

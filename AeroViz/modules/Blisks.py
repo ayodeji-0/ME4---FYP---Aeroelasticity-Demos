@@ -17,10 +17,10 @@ class Blisk:
         angles = np.linspace(0, 2 * np.pi, self.num_blades, endpoint=False)
         return angles
     
-    def plot_blisk(self):
+    def plot(self, color = 'black'):
         """Plot the Blisk structure with blades."""
         fig, ax = plt.subplots(figsize=(6, 6))
-        circle = plt.Circle((0, 0), self.disk_radius, color='gray', fill=True, alpha=0.7)
+        circle = plt.Circle((0, 0), self.disk_radius, color=color, fill=True, alpha=0.7)
         ax.add_patch(circle)
         for angle in self.blade_positions:
             x_start, y_start = self.disk_radius * np.cos(angle), self.disk_radius * np.sin(angle)
@@ -33,7 +33,7 @@ class Blisk:
         plt.grid(True)
         return fig
 
-class BliskFlutterAnalysis:
+class BliskAnalysis:
     """
     Class for analyzing the flutter characteristics of a blisk.
     """

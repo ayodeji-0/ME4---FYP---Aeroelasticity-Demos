@@ -11,13 +11,10 @@ import matplotlib.pyplot as plt
 # |   ├── 3_LinearCascade.py
 # |--Modules
 # |   ├── CBT_Flutter.py
+# |   ├── Blisk.py
+# |   ├── Cascades.py
 
-
-# import the module from the module folder
-# This is the correct way to import the module
-from modules.CBT_Flutter import *
-
-st.set_page_config(layout="wide", page_icon="./icon.ico")
+st.set_page_config(layout="wide", page_icon="./icons/icon.ico")
 
 
 st.markdown(
@@ -44,3 +41,9 @@ st.markdown(
             )
 
 st.header('AeroViz')
+st.write("Motivational Objectives")
+# nice pics
+
+# final use case will be links etc
+
+# consider scaling animations - really small displacements dont show, waste of computational power

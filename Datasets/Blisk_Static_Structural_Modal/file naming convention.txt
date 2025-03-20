@@ -1,0 +1,11 @@
+AA_TD_XX_YY_ZZ.csv - Nodal Displacements
+MSR_ZZ.csv - Natural Frequencies per Harmonic - Modal Analysis Tabular Output
+TD - Total Deformation
+MSR - Mode Shape Results
+
+AA - Analysis Type: SS - Static Structural, M - Modal
+XX - Harmonic Index
+YY - Mode Shape
+ZZ - Fixed Support Type: 1 - Disk Centre & Blade Root Sides, 2 - Disk Centre Only, 3 - Blade Root Sides Only
+
+

@@ -15,6 +15,13 @@ from matplotlib.patches import Polygon
 import matplotlib.transforms as transforms
 import matplotlib.patches as patches
 
+# Plot Styling
+plt.rcParams["text.color"] = "white"
+plt.rcParams["axes.labelcolor"] = "white"
+plt.rcParams["xtick.color"] = "white"
+plt.rcParams["ytick.color"] = "white"
+
+
 # Refactoring code to use oop principles
 # Define a class for the airfoil
 class Airfoil:
@@ -137,7 +144,7 @@ class Airfoil:
         # Formatting
         ax.set_aspect('equal', 'box')
         fig.patch.set_facecolor('#0e1117')
-        #ax.set_title(f"Airfoil {self.code} Plot")
+        #ax.set_title(f"Airfoil {self.code} Preview")
         ax.axis('off')
 
         return fig  # Keep plt.show() outside the function
@@ -193,7 +200,7 @@ class FlutterAnalysis:
             self.omega = np.array([0, 0])
             self.zeta = np.array([0, 0])
 
-            print("Steady - Basic mode selected, but implementation is not included yet.")
+            raise NotImplementedError("Steady - Basic mode selected, but implementation is not included yet.")
 
 
         elif self.mode == 'Steady - State Space':
@@ -213,10 +220,17 @@ class FlutterAnalysis:
             # Dimensionalise eigenvalues - in essence returns lambda = p*u/b
             self.vals = p*self.V*self.w_theta
             #self.vecs[0] = self.vecs[0] * self.b # uncomment if needed to scale the eigenvectors
+
+
+            # Filtering currently removes all values from list so commented for now
+            # self.vals = self.vals[np.where(np.real(self.vals) > 0)]  # Filter out negative eigenvalues
+            # self.vecs = self.vecs[:, np.where(np.real(self.vals) > 0)]  # Filter out negative eigenvectors
             
             # Split lambda into components
             self.omega = np.abs(self.vals.imag)  # Frequency component
             self.zeta = -self.vals.real / np.abs(self.vals.imag)  # Damping ratio
+
+            
         
         elif self.mode == 'Quasi Steady - State Space':
             # Placeholder for Quasi-Steady implementation
@@ -224,8 +238,7 @@ class FlutterAnalysis:
             self.vecs = np.array([[1, 0], [0, 1]])
             self.omega = np.array([0, 0])
             self.zeta = np.array([0, 0])
-
-            print("Quasi-Steady mode selected, but implementation is not included yet.")
+            raise NotImplementedError("Quasi-Steady mode selected, but implementation is not included yet.")
 
 
         else:
@@ -287,44 +300,6 @@ class FlutterAnalysis:
     #     plt.tight_layout()
     #     return fig
 
-    def plot_displacement(self):
-        """
-        Plot the displacement time history for flutter analysis.
-        """
-        t = np.linspace(0, 10, 500)  # Time vector
-
-        # Extract modal frequencies and damping
-        omega = np.abs(self.vals.imag)
-        gamma = self.vals.real
-        zeta = -gamma / omega
-
-        # Compute natural frequency
-        w = omega / np.sqrt(1 - zeta**2)
-
-        # Compute plunge (h) and pitch (θ) displacements
-        h_t = np.exp(gamma[0] * t) * np.cos(omega[0] * t)
-        theta_t = np.exp(gamma[1] * t) * np.cos(omega[1] * t)
-
-        fig, axes = plt.subplots(2, 1, figsize=(10, 6))
-
-        # Plot plunge displacement
-        axes[0].plot(t, h_t, 'b-', label="Plunge Displacement (h)")
-        axes[0].set_title("Time History of Plunge Displacement")
-        axes[0].set_xlabel("Time (s)")
-        axes[0].set_ylabel("Displacement (h)")
-        axes[0].legend()
-        axes[0].grid()
-
-        # Plot pitch displacement
-        axes[1].plot(t, theta_t, 'r-', label="Pitch Displacement (θ)")
-        axes[1].set_title("Time History of Pitch Displacement")
-        axes[1].set_xlabel("Time (s)")
-        axes[1].set_ylabel("Displacement (θ)")
-        axes[1].legend()
-        axes[1].grid()
-
-        plt.tight_layout()
-        return fig
     
     # Animation Section
 
@@ -429,6 +404,62 @@ class FlutterAnalysis:
 
     #         plt.show()
     #         return HTML(ani.to_jshtml())
+    def plot_displacements(self, duration=10, width=600, height=600):
+        """
+        Plot the displacement time history for flutter analysis.
+        """
+
+        if self.vals is None or self.vecs is None:
+            raise ValueError("Eigenvalues and eigenvectors are not computed. Run analysis first.")
+        
+        else:
+            t = np.linspace(0, duration, 500)  # Time discretization
+
+            self.compute_response()
+
+            # Extract the 4 eigenvalue pairs (lambda values)
+            lambda_vals = self.vals[:4]  # Select first 4 eigenvalues
+            real_parts = np.real(lambda_vals)  # Gamma (damping)
+            imag_parts = np.imag(lambda_vals)  # Omega (frequency)
+            
+            # Extract the 4 eigenvector pairs (q_tidal)
+            h_tidals = np.real(self.vecs[0, :4]) * self.b  # Extract real plunge displacements
+            theta_tidals = np.real(self.vecs[1, :4])  # Extract real torsional displacements
+
+            # Compute phase differences between plunge and pitch modes
+            phase_diffs = np.angle(self.vecs[1, :4] / self.vecs[0, :4])
+
+            # Define time range for animation
+            t = np.linspace(0, duration, duration * 100)
+
+            # Set up figure with 2x2 grid for 4 modes
+            width /= 100
+            height /= 100
+            fig, axes = plt.subplots(4, 1, figsize=(width, height), gridspec_kw={'width_ratios': [1], 'height_ratios': [1, 1, 1, 1]})
+            fig.set_size_inches(6, 8)  # Set figure size to 600 pixels wide (6 inches) and appropriate height
+            fig.suptitle("Coupled Flutter Modes - Time Response", fontsize=14)
+
+            # Precompute displacement histories for 4 eigenvector pairs
+            h_t = np.array([
+                h_tidals[i] * np.exp(real_parts[i] * t) * np.cos(imag_parts[i] * t) for i in range(4)
+            ])
+
+            theta_t = np.array([
+                theta_tidals[i] * np.exp(real_parts[i] * t) * np.cos(imag_parts[i] * t + phase_diffs[i])
+                for i in range(4)
+            ]) # Unclipped version - results in infinite values sometimes
+
+            # Plot plunge and twist displacements for each mode
+            for i in range(4):
+                axes[i].plot(t, h_t[i], 'b-', label=f"Mode {i+1} Plunge")
+                axes[i].plot(t, theta_t[i], 'r--', label=f"Mode {i+1} Twist")
+                axes[i].set_xlabel("Vibration Period")
+                axes[i].set_ylabel("Displacement")
+                axes[i].legend()
+                axes[i].grid()
+                axes[i].set_title(f"Mode {i+1} Displacement")
+                
+            return fig
 
     def animate_flutter(self, airfoil_coords, duration=10, fps=30, properties={'airfoil_color': 'lightblue', 
                     'transparency': 50, 'angled_lines': True, 'angled_text': True, 
@@ -438,7 +469,7 @@ class FlutterAnalysis:
         """
         
             
-        anim_bar = st.progress(0, text= "Rendering Animation...")  # Store progress bar object
+        anim_bar = st.progress(0, text= f"Rendering Animation...")  # Store progress bar object
         self.progress_bar = anim_bar  # Save to self for use in update() function
                 
         # Compute eigenvalues and eigenvectors
@@ -469,23 +500,24 @@ class FlutterAnalysis:
         h_t = np.array([
             h_tidals[i] * np.exp(real_parts[i] * t) * np.cos(imag_parts[i] * t) for i in range(4)
         ])
-        theta_t = np.array([
-                            np.clip(theta_tidals[i] * np.exp(real_parts[i] * t) * np.cos(imag_parts[i] * t + phase_diffs[i]), -np.pi, np.pi)
-                            for i in range(4)
-                        ]) # Ensure it stays in a reasonable range
-
         # theta_t = np.array([
-        #     theta_tidals[i] * np.exp(real_parts[i] * t) * np.cos(imag_parts[i] * t + phase_diffs[i])
-        #     for i in range(4)
-        # ]) # Unclipped version - results in infinite values
+        #                     np.clip(theta_tidals[i] * np.exp(real_parts[i] * t) * np.cos(imag_parts[i] * t + phase_diffs[i]), -np.pi, np.pi)
+        #                     for i in range(4)
+        #                 ]) # Ensure it stays in a reasonable range
 
+        theta_t = np.array([
+            theta_tidals[i] * np.exp(real_parts[i] * t) * np.cos(imag_parts[i] * t + phase_diffs[i])
+            for i in range(4)
+        ]) # Unclipped version - results in infinite values
+
+##
         # Create 4 airfoil patches for animation (1 per row)
         airfoil_patches = []
         for i in range(4):
             airfoil_patch = Polygon(airfoil_coords, closed=True, edgecolor='k', facecolor=properties['airfoil_color'], alpha=0.5)
             axes[i, 0].add_patch(airfoil_patch)
-            axes[i, 0].set_xlim(-self.b, self.b)
-            axes[i, 0].set_ylim(-2 * self.b, 2 * self.b)
+            axes[i, 0].set_xlim(-1.5 * self.b, 1.5 * self.b)
+            axes[i, 0].set_ylim(-1.5 * self.b, 1.5 * self.b)
             axes[i, 0].set_aspect('equal')
             airfoil_patches.append(airfoil_patch)
 
@@ -515,18 +547,22 @@ class FlutterAnalysis:
             progress_value = int((frame / len(t)) * 100)
 
             # Update progress bar dynamically
-            self.progress_bar.progress(progress_value, text= "Rendering Animation...")
-            for i in range(4): # Loop through each mode
-                theta_val = theta_t[i, frame]  # Extract theta value
+            self.progress_bar.progress(progress_value, text= "Time Elapsed: " + str(int(frame / fps)) + "s" "\n\n Rendering Animation...")
+            # for i in range(4): # Loop through each mode
+            #     theta_val = theta_t[i, frame]  # Extract theta value
 
-                # Debugging print statement
-                if not np.isfinite(theta_val):  # Check for NaN or Inf
-                    print(f"Warning: Invalid theta_t[{i}, {frame}] = {theta_val}")
-                # Ensure theta value is finite before applying transformation
-                if np.isfinite(theta_val):
-                    trans = transforms.Affine2D().rotate_deg_around(self.a, 0, np.degrees(theta_val)).translate(0, h_t[i, frame]) + axes[i, 0].transData
-                    airfoil_patches[i].set_transform(trans)
+            #     # Debugging print statement
+            #     if not np.isfinite(theta_val):  # Check for NaN or Inf
+            #         print(f"Warning: Invalid theta_t[{i}, {frame}] = {theta_val}")
+            #     # Ensure theta value is finite before applying transformation
+            #     if np.isfinite(theta_val):
+            #         trans = transforms.Affine2D().rotate_deg_around(self.a, 0, np.degrees(theta_val)).translate(0, h_t[i, frame]) + axes[i, 0].transData
+            #         airfoil_patches[i].set_transform(trans)
 
+            # return airfoil_patches 
+            for i in range(4):
+                trans = transforms.Affine2D().rotate_deg_around(self.a, 0, np.degrees(theta_t[i, frame])).translate(0, h_t[i, frame]) + axes[i, 0].transData
+                airfoil_patches[i].set_transform(trans)
             return airfoil_patches
         # Run the animation
         ani = FuncAnimation(fig, update, frames=len(t), blit=True, interval=1000 / fps)
@@ -534,11 +570,15 @@ class FlutterAnalysis:
 
         anim = ani.to_jshtml()
 
-        anim_bar.empty()
-        self.progress = 0
+        anim_bar.empty()  # Clear progress bar after animation is complete
         return anim
 
 
+class ParametricStudy:
+    """
+    Class to carry out a parametric study on the flutter analysis. 
+    i.e., varying one parameter at a time and observing the effect on the flutter response.
+    """
     
         
 

@@ -1,7 +1,7 @@
 import streamlit as st
 from modules.Blisks import *
 
-st.set_page_config(layout="wide", page_icon="./icon.ico")
+st.set_page_config(layout="wide", page_icon="./icons/icon.ico")
 
 ## CSS Styling
 st.markdown(
@@ -12,6 +12,25 @@ st.markdown(
         .body { text-align: justify; font-size: 12px; }
     </style>
     """,
+    unsafe_allow_html=True,
+)
+
+st.markdown(
+    """
+        <style>
+                .stAppHeader {
+                    background-color: rgba(255, 255, 255, 0.0);  /* Transparent background */
+                    visibility: visible;  /* Ensure the header is visible */
+                }
+
+               .block-container {
+                    padding-top: 0rem;
+                    padding-bottom: 0rem;
+                    padding-left: 1.5rem;
+                    padding-right: 1.5rem;
+                }
+        </style>
+        """,
     unsafe_allow_html=True,
 )
 
@@ -32,7 +51,7 @@ if "anim_properties" not in st.session_state:
     }
 
 ## Page Setup
-st.title('Bladed Disk Vibrations')
+st.title('Structural Analysis of Bladed Disks')
 col1, col2, col3 = st.columns([0.5, 1, 0.5])
 
 ## Parameters
@@ -45,15 +64,13 @@ with col1:
         cont1_1 = st.container(border=True)
         with cont1_1:
             mode = st.selectbox('Analysis Type', ['Dimensionless', 'Dimensional'])
-            st.write("Replace sliders with blisk relevant parameters")
             num_blades = st.slider('Number of Blades', 3, 20, 10, 1)
             num_points = st.slider('Discretization', 10, 500, 10, 10)
+            radial_segments = st.slider('Radial Segments', 5, 20, 10, 1)
+            blade_segments = st.slider('Blade Segments', 5, 20, 10, 1)
             blade_length = st.slider('Blade Length', 0.05, 0.2, 0.1, 0.01)
             disk_radius = st.slider('Disk Radius', 0.3, 1.0, 0.5, 0.01)
 
-            mass_ratio = st.slider("Mass Ratio", 0.1, 10.0, 1.0)
-            frequency_ratio = st.slider("Frequency Ratio", 0.1, 5.0, 1.0)
-            reduced_velocity = st.slider("Reduced Velocity", 0.1, 20.0, 5.0)
             if mode == 'Dimensional':
                 blade_width = st.slider('Blade Width', 0.05, 0.2, 0.1, 0.01)
                 thickness = st.slider('Thickness - Both (Into Page)', 0.01, 0.1, 0.05, 0.01)
@@ -66,7 +83,7 @@ with col1:
         buton_11 = st.button('Generate Blisk', use_container_width=True)
 
         # Store current slider values as a tuple
-        current_sys_params = (num_blades, blade_length, disk_radius, num_points)
+        current_sys_params = (mode, num_blades, num_points, radial_segments, blade_segments, blade_length, disk_radius)
 
         # Set properties to default if not present
         properties = st.session_state.anim_properties
@@ -81,7 +98,7 @@ with col1:
             
 
         if buton_11:
-            st.session_state.blisk_obj = Blisk(num_blades, blade_length, disk_radius)
+            st.session_state.blisk_obj = Blisk(num_blades=num_blades, blade_length=blade_length, disk_radius=disk_radius)
             #st.session_state.blisk_obj.generate_naca_airfoil4()
 
         # Persist the preview state
@@ -181,18 +198,19 @@ with col2:
         cont2_1 = st.container(border=True)
         
         with cont2_1:
+            analysis = None
             if button_12:
                 st.write("Blisk animation goes here")
+                blisk_obj = Blisk(num_blades = num_blades, blade_length=blade_length, disk_radius=disk_radius, blade_segments=blade_segments, radial_segments=radial_segments)
+                blisk_obj.precompute_parameters()
+                st.pyplot(blisk_obj.plot())
                 
                 # Placeholder display
-                analysis = BliskAnalysis(mass_ratio, frequency_ratio, reduced_velocity)
-                eigenvalues, damping_ratios = analysis.get_results()
+                analysis = BliskAnalysis(blisk_obj=blisk_obj, time=1, intervals=100)
+                deformations = analysis.compute_deformations()
+                st.write("### Deformations:")
+                st.write(deformations)
 
-                st.write("### Eigenvalues:")
-                st.write(eigenvalues)
-
-                st.write("### Damping Ratios:")
-                st.write(damping_ratios)
 
                 # fa = FlutterAnalysis(mu, sigma, V, a, b, e, r, mode, w_theta)
                 # fa.compute_response()                
@@ -204,12 +222,20 @@ with col2:
 
         cont2_2 = st.container(border=True)
         with cont2_2:
-            st.write('Add blisk plot here')
-            #fa.
+            st.write('Add mode shapes here')
+
     with col2_2:
         cont2_3 = st.container(border=True)
         with cont2_3:
+            cont2_width = 800
+            cont2_height = 600
             st.write('Add amplitude and phase plot here')
+            if analysis is not None:
+                st.write('Add blisk plot here')
+                anim = analysis.animate_deformations()
+                st.components.v1.html(anim, width = cont2_width,height =cont2_height, scrolling=True)#, width=800, height=600)
+
+                #fa.
             #fa.amp_phase_plot()
         cont2_4 = st.container(border=True)
         with cont2_4:

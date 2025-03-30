@@ -1,0 +1,690 @@
+Flutter Part 1: Fundamentals with quasi-steady
+aerodynamic theory
+Sina Stapelfeldt *
+Imperial College London
+von Karman Institute for Fluid Dynamics
+18 August 2022
+Contents
+1
+Introduction
+3
+2
+Aeroelastic formulation
+5
+2.1
+Typical section
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+2.2
+Equation of motion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+6
+2.3
+Non-dimensionalisation . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+8
+2.4
+Steady aerodynamic forces . . . . . . . . . . . . . . . . . . . . . . . . . . .
+9
+2.5
+Quasi-steady behaviour . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+9
+3
+Coupled bending-torsion flutter
+11
+4
+Parameter dependency
+15
+4.1
+Mass ratio . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+15
+4.2
+Frequency ratio . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+15
+4.3
+Location of centre of mass and torsional axis . . . . . . . . . . . . . . . . .
+15
+5
+Conclusions
+19
+*The author would like to thank Roger Zoepke-Sonntag for his contribution to these lecture notes, in
+particular for proofreading, spotting mistakes in the equations and generally improving readability.
+VKI
+- 1 -
+
+
+1
+INTRODUCTION
+1
+Introduction
+Flutter is a dynamic instability caused by the interaction of aerodynamic, elastic and
+inertial forces. It therefore belongs to the class of dynamic aeroelastic phenomena, oth-
+ers being buffeting or gust response, and sits in the centre of Collar’s famous triangle
+of forces illustrated in Figure 1. Flutter causes uncontrolled vibration with rising am-
+plitude, and when the stress in the material exceeds steady or fatigue limits, it can
+ultimately lead to the destruction of the structure. Unlike gust response or buffeting,
+flutter does not require any external forces. It is the result of a positive feedback mech-
+anisms between deformation of the structure and resulting unsteady aerodynamic loads.
+It is commonly encountered in lifting surfaces, such as aircraft wings, tails and control
+surfaces and also in wind turbine blades, rotor craft, turbomachinery blades, or even
+bridges. Famous examples of flutter are the first recorded flutter event of the Handley
+Page airplane in 1916 and the collapse of the Tacoma Narrows Bridge in 1940.
+Be-
+cause of the potentially catastrophic consequences, flutter must in general be completely
+eliminated by design or at least prevented from occurring within the flight envelope. A
+historical review of flutter research is given, for example, by Garrick and Reed III (1981).
+Figure 1: Collar’s triangle of forces
+To design against flutter, the stiffness
+or mass distributions of the structure or
+its aerodynamics have to be changed. This
+tends to result in structures which are
+heavier than designs optimised for aero-
+dynamic performance (the so-called aeroe-
+lastic penalty). This is still a concern in
+modern engineering and a lot of research
+is dedicated to the improvement of mod-
+elling and detection capabilities to design
+flutter-free structures, develop mitigation
+measures or implement automatic control
+measures. While most of the early research
+on flutter was performed in wind tunnels or using analytical models, modern techniques
+employ high-fidelity models of structural dynamics and aerodynamics to analyse the sta-
+bility of complex structures such as whole aircraft or multi-stage aero-engine compressors.
+Often, neither the mechanical properties nor the aerodynamics of such complex systems
+are completed understood or accurately modelled, and therefore experimental testing re-
+mains a vital part of the development process.
+Although flutter is a complex phenomenon, the nature of flutter and its analysis tech-
+nique can be understood from the coupled structural and aerodynamic analysis of a sim-
+plified two-dimensional model. This lecture will introduce such a model, the governing
+equation and its stability analysis. The behaviour of the two-dimensional model is de-
+scribed by a linear set of structural dynamic equations which are coupled with a linear
+representation of the aerodynamic forces resulting from the structural deformations. In
+this lecture, the aerodynamic analysis is restricted to steady forces, which presents a sig-
+nificant limitation. When linear models for the unsteady aerodynamics are included, the
+analysis is typically referred to as classical flutter analysis. In reality both structural
+VKI
+- 3 -
+
+1
+INTRODUCTION
+dynamics and aerodynamics give rise to non-linear effects. The flow over the surface may
+separate for part or all of the vibration cycle, leading to so-called stall flutter. Large
+deflections, mechanical contacts or control systems may also introduce non-linearities.
+Typical flutter analysis concentrates on the stability of infinitesimal small deflections,
+since it is undesirable for any system to be unstable when imposed to small random
+perturbations.
+Often, the introduction of non-linearities at larger deflections actually
+stabilises the system. This is the case, for example, in stall flutter when flow separation
+limits the amplitudes and leads to periodic limit-cycle oscillations.
+A discussion of unsteady forces and non-linearities is out of scope of this lecture, but
+some methods for analysis with unsteady aerodynamics and non-linear effects will be
+introduced in Part 2. The simplified treatment presented in the following is chosen to
+demonstrate important characteristics of flutter instability and illustrate flutter analysis.
+VKI
+- 4 -
+
+2
+AEROELASTIC FORMULATION
+2
+Aeroelastic formulation
+2.1
+Typical section
+A ‘typical section model’, which represents the cross section of a wing or rotor blade
+will be used to demonstrate the stability analysis. This model has historically been used
+to perform flutter analyses. It is an extremely simplified case which still shares many
+properties with the more complex systems found across engineering applications. The
+model and nomenclature here follows closely those of
+Hodges and Pierce (2011).
+A
+similar, more general analysis can be found in Bisplinghoff et al. (2013).
+A schematic of the typical two-dimensional section model is shown in Fig. 2. The
+aerofoil section is elastically mounted on a set of discrete springs. In the standard case
+shown here with two degrees of freedom, these are a compression and a torsional spring
+representing the structural bending and torsional stiffness of the three-dimensional wing.
+The corresponding two degrees of freedom are plunging and twisting, denoted by h and θ.
+The spring stiffness constants are accordingly labelled kh and kθ. The spring are mounted
+on the reference point labelled xR. The chord length is denoted by c but it is common to
+use semi-chord b = c/2 as a reference length.
+Two more points of interest are the point where the aerodynamic forces are acting
+on and the centre of mass xCM. To simplify the aerodynamic analysis, we will consider
+the aerodynamic forces acting through the aerodynamic centre xAC. The offset between
+the centre of mass and the reference point is defined as xR −xCM = b(e −a) = bxθ.
+The incoming air is axial, such that the instantaneous incidence angle is equal to θ. This
+assumption is made for simplicity of the expressions in this example but it does not
+impact the generality of the results since flutter stability concerns dynamic deviations
+from a given steady-state. In a real case, the wing would be at an angle of attack and θ
+would represent the deviation from this angle. The generalized aerodynamic forces acting
+in the two degrees of freedom are given by
+Fh = −L
+(1)
+Fθ = MAC + (xR −xAC)L = MAC + b
+1
+2 + a
+
+L
+(2)
+Figure 2: Typical section model
+VKI
+- 5 -
+
+2
+AEROELASTIC FORMULATION
+2.2
+Equation of motion
+where MAC is the moment about the aerodynamic centre. The second line is the moment
+acting on the centre of torsion. It is here referred to as a generalized force, i.e. a force
+acting in the direction of the coordinate θ, to keep the notation general.
+In classical
+flutter, the lift and moment can be considered linear functions of the deformation (and
+their derivatives), i.e. L = (dCL/dθ)θ, where the lift curve slope dCL/dθ is constant in
+θ. Assuming steady flow and thin airfoil theory, they can be simplified significantly since
+L = 2πρU 2bθ and MAC = 0.
+2.2
+Equation of motion
+The equation of motion for this system for the plunge and twist degree of freedom is given
+by Eq. 3. For a derivation, the reader is referred to Hodges and Pierce (2011).
+ m
+mbxθ
+mbxθ
+Iθ
+ ¨h
+¨θ
+
++
+kh
+0
+0
+kθ
+ h
+θ
+
+=
+Fh
+Fθ
+
+(3)
+where Iθ = ICM + mb2x2
+θ and ICM is the moment of inertia about the centre of mass. The
+mass matrix includes off-diagonal terms mbxθ crossed by inertial coupling of the plunging
+and twisting motion. Because the centre of mass is located a ahead of the torsional axis,
+a vertical downward acceleration ¨h is accompanied by an inertial force m¨h acting in the
+upward direction through the centre of mass, which produces a positive moment about the
+centre of gravity mbxθ¨h. Similarly, an angular acceleration ¨θ around the centre of torsion
+xR creates a linear acceleration of mbxθ¨θ at the centre of gravity, resulting in a symmetric
+mass matrix. The stiffness matrix is diagonal because the elastic forces are decoupled.
+The aerodynamic forces on the right hand side are the generalized forces acting in the
+two degrees of freedom, in this case lift and moment. They are more complicated and
+depending on their exact nature introduce further coupling between the two degrees of
+freedom, which will be seen later.
+We will now make a few substitutions and manipulate the equations to arrive in a
+form which is more suitable for analysis. This follows the procedure in Hodges and Pierce
+(2011). Firstly, the structural stiffness will be expressed in terms of the natural frequencies
+of the in-vacuo system ωh =
+p
+kh/m and ωθ =
+p
+kθ/Iθ. (These can be obtained by setting
+the right hand side of Eq. 3 to zero.) Secondly, we change the plunge variable to h/b and
+multiple the first equation by b.
+ mb2
+mb2xθ
+mb2xθ
+Iθ
+ ¨h/b
+¨θ
+
++
+mb2ω2
+h
+0
+0
+Iθω2
+θ
+ h/b
+θ
+
+=
+bFh
+Fθ
+
+(4)
+Now, all the terms have the same units. As already mentioned, in classical flutter it is
+assumed that the aerodynamic forces are linear functions of the the plunging and twisting
+displacements and velocities: Fh = f(h/b, ˙h/b, θ, ˙θ), Fθ = g(h/b, ˙h/b, θ, ˙θ). Expressing
+this relationship with complex coefficients, Fh = ˜Fhhh/b + ˜Fhθθ and Fθ = ˜Fθhh/b + ˜Fθθθ,
+they can be further categorised into four components:
+˜Fhh =
+Plunging force due to plunging motion
+˜Fhθ =
+Plunging force due to twisting motion
+˜Fθh =
+Twisting force due to plunging motion
+˜Fθθ =
+Twisting force due to twisting motion
+VKI
+- 6 -
+
+2.2
+Equation of motion
+2
+AEROELASTIC FORMULATION
+These force coefficients ˜F, also known as aerodynamic influence coefficients, can be inter-
+preted as the unsteady aerodynamic force resulting from a unit deflection in the generalised
+displacements h/b or θ. They are complex and the real part represents the component in
+phase with the displacement, while the imaginary part represents the component in phase
+with the velocity.
+Substituting the expressions for the aerodynamic forces into Eq. 4, the equation of
+motion becomes:
+ mb2
+mb2xθ
+mb2xθ
+Iθ
+ ¨h/b
+¨θ
+
++
+mb2ω2
+h
+0
+0
+Iθω2
+θ
+ h/b
+θ
+
+=
+b ˜Fhh
+b ˜Fhθ
+˜Fθh
+˜Fθθ
+ h/b
+θ
+
+(5)
+In this case, Eq. 5 is a set of linear ordinary differential equations which has general
+solutions which are exponential functions of time:
+h(t) = ˜heλt
+θ(t) = ˜θeλt
+(6)
+where ˜h and ˜θ are complex amplitudes. Their real parts represent the vibration amplitudes
+and their relative phases represent the phase shift between the plunging and twisting
+motion, i.e. the mode shape.
+To keep the notation concise, we introduce the mass M, stiffness K and aerodynamic
+matrices F and the generalised displacement vector q = [h/b
+θ]T = ˜qeλt:
+M ¨q −[K −F]q = 0
+(7)
+Making the substitution q = ˜qeλt, Eq. 7 transforms into an eigenvalue problem:
+λ2I −M −1[K −F] = 0
+(8)
+The roots are typically two complex conjugate pairs describing two vibration modes, for
+example:
+λ1 = Γ1 ± iΩ1
+λ2 = Γ2 ± iΩ2
+(9)
+(3.1) ζ = 0.05
+(3.2) ζ = −0.05
+Figure 3: Time histories for stable, and unstable system where ω is the vibration frequency
+and T = 2π/ω is the vibration period.
+VKI
+- 7 -
+
+2
+AEROELASTIC FORMULATION
+2.3
+Non-dimensionalisation
+By analogy to a spring-damper system (¨x + 2ζω ˙x + ω2x = 0), the complex eigenvalues
+relate to the critical damping ratio ζ = −Γ/ω and natural frequency of the coupled
+aeroelastic system ω = Ω/
+p
+1 −ζ2. Typical responses for different values of Γ are shown
+in Fig. 3.
+Looking at Eq. 7, it is possible to split the aerodynamic forces into real and imaginary
+components when moving them to the left hand side. This is done by considering that
+Fq = [ℜ(F) + iℑ(F)]q = ℜ(F)q + iℑ(F) ˙q
+λ since q = ˜qeλt and ˙q = ˜qλeλt = λq.
+M ¨q −[ℑ(F)/λ] ˙q + [K −ℜ(F)]q = 0
+(10)
+In this form, it is clear that the aerodynamic forces introduce damping and modify the
+effective stiffness of the system.
+The last steps (from Eq. 7 apply to any aeroelastic system which can be modelled in
+terms of a set of generalized displacements, not just the typical section.
+2.3
+Non-dimensionalisation
+Equation 5 can be solved as written. However, to understand the nature and character-
+istics of flutter it is more informative to express it in terms of non-dimensional variables.
+The aerodynamic forces on the right hand side are functions of the aerodynamic (lift and
+moment) coefficients and can be written as:
+˜Fhh = ˜Chhρu2b
+˜Fhθ = ˜Chθρu2b
+˜Fθh = ˜Cθhρu2b2
+˜Fθθ = ˜Cθθρu2b2
+(11)
+Substituting this into Eq. 5, manipulating the equations and identifying the non-dimensional
+parameters:
+Mass ratio:
+µ = m/(ρπb2)
+Frequency ratio:
+σ = ωh/ωθ
+Radius of gyration:
+r =
+p
+Iθ/(mb2)
+Reduced velocity:
+V = u/(bωθ)
+(12)
+where m is the mass per unit span. The origin of the π in the definition of mass ratio lies
+in thin airfoil theory, and the mass ratio can thus be interpreted as the ratio of the mass
+of the blade to the mass of air in a circle with radius semi-chord.
+Eq. 5 can be rewritten as:
+1
+V 2ω2
+θ
+ 1
+xθ
+xθ
+r2
+ ¨h/b
+¨θ
+
++
+σ/V 2
+0
+0
+r2/V 2
+ h/b
+θ
+
+= 1
+µ
+ ˜Chh
+˜Chθ
+˜Cθh
+˜Cθθ
+ h/b
+θ
+
+(13)
+Eq. 13 is the non-dimensional equation of motion for a typical aerofoil section in plunging
+and twisting motion. This is an eigenvalue problem in terms of a new non-dimensional
+eigenvalue, historically referred to as p = λb/u:
+VKI
+- 8 -
+
+2.4
+Steady aerodynamic forces
+2
+AEROELASTIC FORMULATION
+p2I −[M ∗]−1[K∗−F ∗] = 0
+(14)
+where the ∗denotes the non-dimensional form of the mass, stiffness and aerodynamic
+matrices. The methods which determine stability from Eq. 14 are often referred to as p
+method after the non-dimensional complex eigenvalue.
+Depending on the nature of the right hand side, Eq. 13 can be solved analytically.
+In general, however, the aerodynamic force coefficients will be functions of the reduced
+frequency of oscillation, k = fb/u, and Mach number and the system needs to be solved
+iteratively. This procedure is often referred to as the p-k method (Hassig (1971)). In this
+lecture, only steady aerodynamic forces will be considered.
+2.4
+Steady aerodynamic forces
+Eq. 13 simplifies significantly if all aerodynamic forces can be calculated from steady
+state formulas. In this case the angle of attack is assumed to be the instantaneous angle
+of attack, i.e. θ, and there are no aerodynamic loads resulting from the plunging motion.
+Assuming thin airfoil theory, this results in simple expressions for the aerodynamic force
+and moment coefficients: ˜Chh = ˜Cθh = 0 and ˜Chθ = −CL = −2π and ˜Cθθ = −2π(a + 1
+2).
+If these are substituted in Eq. 13, the eigenvalue problem becomes:
+p2
+ 1
+xθ
+xθ
+r2
+ ˜h/b
+˜θ
+
++
+"
+σ2
+V 2
+2
+µ
+0
+r2
+V 2 −2
+µ(a + 1
+2)
+# ˜h/b
+˜θ
+
+= 0
+(15)
+which can be solved directly for p = λb/u giving the damping and modal frequency for a
+given mass ratio, flight velocity and aerofoil geometry. This will be illustrated in Section 3.
+2.5
+Quasi-steady behaviour
+In a more sophisticated approximation, quasi-steady behaviour is assumed. In this case,
+the unsteady forces become functions of the instantaneous angle of attack θ and its first
+and second derivatives, as well as the plunge velocity and acceleration:
+Fhh = πρb2¨h + 2πρub˙h
+(16)
+Fhθ = πρb2[u ˙θ −ba¨θ] + 2πρub[uθ + b(0.5 −a) ˙θ]
+(17)
+Fθh = πρb3a¨h + 2πρub2(a + 0.5)˙h
+(18)
+Fθθ = πρb2[−ub(0.5 −a) ˙θ −b2(1/8 + a2)¨θ]
+(19)
+An explanation of this is out of the scope of this lecture but can be found in Bisplinghoff
+et al. (2013) (Chapter 5).
+VKI
+- 9 -
+
+
+3
+COUPLED BENDING-TORSION FLUTTER
+3
+Coupled bending-torsion flutter
+Figure 4: Example typical section with torsional centre located upstream of mid-chord
+To demonstrate a typical flutter analysis, we will consider a specific aerofoil section
+with steady aerodynamic forces as defined above. The aerodynamic centre will be placed
+at quarter chord, in accordance with thin airfoil theory. Arbitrarily, we will place the
+centre of mass a little upstream of mid-chord (e = −0.1) and the torsional axis further
+upstream a = −0.2, as sketched in Fig. 4. We select a mass ratio µ = 20, frequency ratio
+σ = 0.4 and radius of gyration r2 = 1/4. This results in a radius of gyration around the
+centre of mass of r2
+CM = r2 −(e −a) = 0.05.
+In dimensional terms, this might be an aerofoil of chord length 1m with mass per unit
+span of 15kg in an air stream of density 1kg/m3. If the torsional frequency is ωθ=100Hz,
+a reduced velocity V = 2 would correspond to a dimensional velocity u=100m/s.
+Assuming steady flow, the roots p of Eq. 15, will define the aeroelastic frequencies ω
+(k in non-dimensional form) and aerodynamic damping ratio ζ:
+p = b
+U (Γ + iΩ) = b
+U
+h
+ωζ + iω
+p
+1 −ζ2
+i
+= kζ + ik
+p
+1 −ζ2
+(20)
+For ζ << 1, ω = ℑ(p)U/b, and ζ = −ℜ(p)/ℑ(p). Note that k here is the inverse of reduced
+velocity and therefore defined based on semi-chord and frequency in Hz. In literature it
+is often also defined based on chord length and/or frequency in radians per second.
+Figure 5 plots the aeroelastic frequency ω normalised by the natural frequency of the
+twisting motion and the aerodynamic damping ratio ζ against the reduced velocity.
+As expected, at zero velocity (in absence of aerodynamic forces) there are two indepen-
+dent frequencies corresponding to one dominantly twisting and one dominantly plunging
+mode. There is a small coupling between these modes because of the off-diagonal terms
+in the mass matrix, introduced by the off-set of the torsional axis with respect to the
+centre of mass. At this point, the real part (aerodynamic damping) is necessarily zero. As
+velocity increases, the two frequencies become closer and at the flutter boundary, when
+aerodynamic damping becomes negative, the two modes coalesce. This type of instabil-
+ity is called a coupled bending-torsion flutter because the instability is a results of the
+merging of the two original modes. The roots are now complex conjugate pairs with one
+having a positive and one a negative real part.
+VKI
+- 11 -
+
+3
+COUPLED BENDING-TORSION FLUTTER
+To further demonstrate the nature of this instability, Fig. 6 shows the corresponding
+eigenvectors which describe the relative magnitude and phase of the plunge and twist
+displacements at every reduced velocity. For velocities below the flutter velocity V < 1.8
+there are two distinct mode shapes, Mode 1, is close to the in-vacuo plunging frequency
+and the magnitude of the plunge component is much larger than that of the twist. Mode
+2 is twist-dominated as expected. As the aerodynamic forces increase, the non-dominant
+components of each mode grow. At the critical velocity, two coupled modes emerge. For
+one of them, the twist component is lagging the plunge component while for the other
+it is leading. This is illustrated in Fig. 7. Mode 1, where the twist component leads the
+plunge (red lines, ϕ > 0) is positively damped as seen Fig. 5. For a case 90 degrees, the
+motion is such that the aerofoil is twisting downwards at the beginning of the downward
+stroke (max plunge displacement), and upward at the beginning of the upward stroke
+(see Figure 8). For the other mode (Mode 2) the twist is lagging the plunge component
+(blue lines, ϕ < 0). In this case, the aerofoil is twisting upwards at the beginning of the
+downward stroke and downwards at the beginning of the upward stroke. This is unstable.
+Figure 5: Aeroelastic frequency and aerodynamic damping as a function of reduced ve-
+locity for a typical section free to move in plunge and twist
+The above analysis has demonstrated how coupled bending-torsion flutter of a typical
+aerofoil section occurs assuming steady aerodynamic loads. As previously mentioned, this
+is a radically simplified assumption but it nevertheless provides some insights into the
+mechanisms of instability (i.e. mode coupling). It can also provide some insights into the
+importance of the governing non-dimensional parameters, which will be shown in the next
+section.
+VKI
+- 12 -
+
+3
+COUPLED BENDING-TORSION FLUTTER
+Figure 6: Amplitude and phase of the plunge and twist component in the two aeroelastic
+modes as a function of reduced velocity
+Figure 7: Displacement histories for the plunge and twist component in Mode 1 and Mode
+2 at V = 2
+VKI
+- 13 -
+
+3
+COUPLED BENDING-TORSION FLUTTER
+(8.1) Twist leading the plunge (stable)
+(8.2) Twist lagging the plunge (unstable)
+Figure 8: Illustration of unstable and stable twist-plunge motion
+VKI
+- 14 -
+
+4
+PARAMETER DEPENDENCY
+4
+Parameter dependency
+The previous section explained flutter instability of an aerofoil cross-section under the
+influence of steady aerodynamic loads. The instability mechanism was shown to be caused
+by coupling of the two degrees of freedom (plunge and twist). Despite its simplicity, the
+typical section demonstrates the important parameters governing stability, which will now
+be discussed.
+From the non-dimensional form of the equation of motion Eq 15, five important pa-
+rameters can be identified: reduced velocity V , mass ratio µ, frequency ratio σ, torsional
+axis off-set xθ = (e −a) and the torsional axis location a. The effect of reduced velocity
+has already been shown in Fig. 5 and 6. The following will investigate the influence of
+the three structural parameters on stability.
+4.1
+Mass ratio
+The mass ratio is the parameter which scales the aerodynamic forces. Figure 9 shows the
+aeroelastic frequency for a range of mass ratios for the example shown above. Flutter
+occurs when the two modes coalesce. It is clear that the flutter speed increases with
+increasing mass ratio. The higher the mass ratio, the lower is the influence of the aero-
+dynamic forces responsible for mode coupling.
+For a given aircraft and speed, mass ratio will change with altitude as air density
+changes. The fact that low mass ratios are more critical, suggests that the sea level flutter
+boundary is lower than that at altitude. Furthermore, it shows that coupled bending-
+torsion flutter is less likely to occur on wings or blades with a high mass per unit span.
+Light aircraft and gliders with mass ratios <15 are more susceptible to flutter at low
+reduced velocities. General aviation mass ratios at sea level are approximately 10-20,
+while helicopter and aero-engine blades can reach 100 (Hodges and Pierce, 2011).
+4.2
+Frequency ratio
+The effect of frequency ratio on the aeroelastic eigenvalues is shown in Figure 10. As
+expected, increasing frequency separation delays the flutter onset. The behaviour is non-
+linear and flutter velocity drops sharply as the frequency ratio approaches unity. For
+σ = 1 the bending and torsion frequencies would need to be in resonance. This can only
+occur for unusually high bending stiffness and unusual torsional stiffness, such that this
+is usually not a concern. It is possible to intentionally design the wing or blade structure
+to increase the frequency ratio and prevent coupled bending-torsion flutter.
+4.3
+Location of centre of mass and torsional axis
+The off-diagonal terms in the mass matrix, i.e. the distance xθ = (e −a)b between the
+torsional centre and the centre of mass determines the level of structural coupling between
+the two modes. If xθ > 0 the centre of mass lies downstream of the torsional axis as in
+the example above. If xθ < 0 the centre of mass lies upstream of the torsional axis.
+Figure 11.1 shows the variation in flutter velocity for an example where the centre
+of mass is fixed at e = 0 as above, and the location of the torsional centre is varied. At
+VKI
+- 15 -
+
+4
+PARAMETER DEPENDENCY
+4.3
+Location of centre of mass and torsional axis
+Figure 9: Influence of mass ratio, µ, on flutter speed (a=-0.2, e=-0.1, r2=0.25, σ=0.4)
+a = −0.5 the torsional centre coincides with the aerodynamic centre at quarter chord, and
+the matrix becomes singular. As the torsional centre shifts away from the aerodynamic
+centre, the stability boundary initially moves to lower velocities because the aerodynamic
+moment induced by the lift force increases, but close to the centre of mass at e = 0, the
+flutter speed increases again. There is no more coupling when the centre of mass and
+aerodynamic centre coincide for this simple example. Similarly, the effect of the static
+unbalance, i.e. the distance between the centre of mass and the torsional axis, is shown
+in Figure 11.2 for a fixed torsional axis. A large xθ increases structural coupling between
+the modes.
+VKI
+- 16 -
+
+4.3
+Location of centre of mass and torsional axis
+4
+PARAMETER DEPENDENCY
+Figure 10: Influence of plunge-twist frequency ratio σ on flutter speed (a=-0.2, e=-0.1,
+r2=0.25, µ=25)
+(11.1) Variation of torsional axis location
+(11.2) Variation of static unbalance
+Figure 11: Flutter velocity as a function of torsional axis location for a typical section
+with µ = 20, r2 = 0.25 and σ = 0.4.
+VKI
+- 17 -
+
+
+REFERENCES
+5
+Conclusions
+This lecture has introduced the aeroelastic analysis of a typical aerofoil section with two
+degrees of freedom: plunging and pitching motion. While the stability analysis, i.e. the
+formulation and solution of an eigenvalue problem, is general, the results presented here
+only apply to a typical section with specific structural parameters and assumes steady
+aerodynamic forces. Nevertheless, a few general conclusions could be drawn:
+ Under the influence of aerodynamic forces, the system’s dynamics are modified. The
+aerodynamic forces change the stiffness and introduce damping.
+ An instability (negative damping) arises when the bending and torsion modes be-
+comes coupled under the influence of aerodynamic forces. This occurs at a critical
+non-dimensional flight speed.
+ For coupled bending-torsion flutter with steady aerodynamic forces, the magnitude
+of the damping depends on the phase-lag between the plunging and twisting motion.
+If the twisting motion leads the plunging motion, i.e. the aerofoil is pitching upwards
+at the upward stroke, the system is unstable.
+ For a given structure, the flutter speed increases with altitude, such that the critical
+flutter condition ordinarily arises at sea level.
+ A large separation between the natural frequencies of the plunging and torsion mode
+delays the onset of coupled bending-torsion flutter.
+Due to the assumptions made, the instabilities shown in the previous section are
+limited to coupled bending-torsion instabilities and only occur at low mass ratios, when
+there is some structural coupling between the modes. In reality, instability conditions are
+far less restrictive. Flutter in an isolated plunge or twisting mode is possible if there is a
+phase-lag between the aerodynamic forces and the structural motion, and very high mass
+ratio structures such as helicopter or turbine blades can also become unstable.
+References
+Bisplinghoff, R. L., Ashley, H., and Halfman, R. L. (2013). Aeroelasticity. Courier Cor-
+poration.
+Garrick, I. and Reed III, W. H. (1981). Historical development of aircraft flutter. Journal
+of Aircraft, 18(11):897–912.
+Hassig, H. J. (1971). An approximate true damping solution of the flutter equation by
+determinant iteration. Journal of Aircraft, 8(11):885–889.
+Hodges, D. H. and Pierce, G. A. (2011). Introduction to structural dynamics and aeroe-
+lasticity, volume 15. cambridge university press.
+VKI
+- 19 -
+

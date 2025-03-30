@@ -15,8 +15,10 @@ from matplotlib.patches import Polygon
 import matplotlib.transforms as transforms
 import matplotlib.patches as patches
 
-# Plot Styling
+# Global Plot Styling
 plt.rcParams["text.color"] = "white"
+plt.rcParams["legend.edgecolor"] = "black"
+plt.rcParams["legend.labelcolor"] = "black"
 plt.rcParams["axes.labelcolor"] = "white"
 plt.rcParams["xtick.color"] = "white"
 plt.rcParams["ytick.color"] = "white"
@@ -61,7 +63,6 @@ class Airfoil:
         p = self.camber_position / 10
         t = self.thickness / 100
         
-        # Generate x-coordinates with cosine spacing
         beta = np.linspace(0, np.pi, self.num_points)
         x = 0.5 * (1 - np.cos(beta))
         
@@ -143,7 +144,8 @@ class Airfoil:
 
         # Formatting
         ax.set_aspect('equal', 'box')
-        fig.patch.set_facecolor('#0e1117')
+        fig.patch.set_facecolor('none') # Set transparent background
+        fig.patch.set_alpha(0)
         #ax.set_title(f"Airfoil {self.code} Preview")
         ax.axis('off')
 
@@ -165,12 +167,15 @@ class FlutterAnalysis:
         self.r = r
         self.mode = mode
         self.w_theta = w_theta
+
+        self.x_theta = None
+
         self.vals = None
         self.vecs = None
         self.omega = None
         self.zeta = None
 
-        self.x_theta = None
+
     
     def compute_response(self):
         """
@@ -439,6 +444,9 @@ class FlutterAnalysis:
             fig.set_size_inches(6, 8)  # Set figure size to 600 pixels wide (6 inches) and appropriate height
             fig.suptitle("Coupled Flutter Modes - Time Response", fontsize=14)
 
+            fig.patch.set_facecolor('none')  # Set background color to transparent
+            fig.patch.set_alpha(0)  # Set background transparency to 0
+
             # Precompute displacement histories for 4 eigenvector pairs
             h_t = np.array([
                 h_tidals[i] * np.exp(real_parts[i] * t) * np.cos(imag_parts[i] * t) for i in range(4)
@@ -573,14 +581,123 @@ class FlutterAnalysis:
         anim_bar.empty()  # Clear progress bar after animation is complete
         return anim
 
+# Dictionary of all possible independent variables for the parametric study
+ps_indep_dict = {
+        'Mass Ratio · μ': 'mu',
+        'Frequency Ratio · σ': 'sigma',
+        'Reduced Velocity · V': 'V',
+        'Torsional Axis Location · a': 'a',
+        'Semi-Chord Length · b': 'b',
+        'Eccentricity · e': 'e',
+        'Radius of Gyration · r': 'r',
+        'Torsional Vibration Frequency · w_θ': 'w_theta'  
+        }
+
+# Dictionary of all possible dependent variables for the parametric study
+ps_dep_dict = {
+    'Aeroelastic Frequency · w/w_ϴ': 'omega',
+    'Damping Ratio · ζ': 'zeta',
+    # 'Magnitude': 'mag',
+    # 'Phase': 'phase'
+    'Eigenvalues': 'vals',
+    'Eigenvectors': 'vecs'
+}
 
 class ParametricStudy:
     """
     Class to carry out a parametric study on the flutter analysis. 
-    i.e., varying one parameter at a time and observing the effect on the flutter response.
+    i.e., varying one parameter at a time and observing the effect on the flutter response (eigenproblem solution).
     """
+    def __init__(self, independent_var, min_val, max_val, step, dependent_var):
+        # Parametric study quantities
+        self.independent_var = independent_var  # Parameter to vary
+        self.min = min_val
+        self.max = max_val
+        self.step = step
+        self.dependent_var = dependent_var
+        self.var_count = len(dependent_var)
+
+        # Study Setup
+        self.x_list = np.arange(self.min, self.max, self.step)
+
+        # Results storage
+        self.results = None
+        # Parametric study quantities
+        self.independent_var = independent_var # Parameter to vary
+        self.min = min_val
+        self.max = max_val
+        self.step = step
+        self.dependent_var = dependent_var # List of dependent variables to observe
+        self.var_count = len(dependent_var)
+
+
+
+        # Study Setup
+        self.x_list = np.arange(self.min, self.max+self.step, self.step)
+
+        # Results storage
+        self.results = None
     
+    def run_study(self, sys_params):
+
+        # Store results in this format
+        # [[indep_var_list],[[dep_var1_list],[dep_var2_list],...]
+        self.results = np.zeros((len(self.x_list), self.var_count + 1))
+        print(self.results)
+
+        # First find what parameter is being varied, then convert input string to the corresponding variable name
+        self.param = ps_indep_dict[self.independent_var]
+        st.write(f"Parameter being varied: {self.param}")
+
+        # Find out what the dependent variable(s) is/are
+        #self.dependent_var
         
+
+        # Initialize the flutter analysis object
+        fa = FlutterAnalysis(*sys_params)
+        st.write("Initalized")
+
+
+        # Loop through each value of the independent variable
+        for i, x in enumerate(self.x_list):
+            # Update parameter
+            setattr(fa, self.param, x)
+            # Compute the response
+            fa.compute_response()
+
+            # Populate the results array
+            self.results[i, 0] = x  # Independent variable value
+            # Loop through each dependent variable, compute the value and store it in the results array
+            for j, dep_var in enumerate(self.dependent_var):
+                value = getattr(fa, ps_dep_dict[dep_var])
+                self.results[i, j + 1] = value if np.isscalar(value) else np.mean(value)
+
+        st.write("Parametric study complete.")
+        st.write(self.results)
+
+    def plot(self):
+        """
+        Plot the results of the parametric study.
+        """
+
+        if self.results is None:
+            raise ValueError("Parametric study results are not available. Run the study first!")
+
+        # Create one plot per dependent variable
+        fig, axes = plt.subplots(self.var_count, 1, figsize=(8, 4 * self.var_count), squeeze=False)
+        axes = axes.flatten()
+
+        for j in range(self.var_count):
+            axes[j].plot(self.results[:, 0], self.results[:, j + 1], 'bo-', label=self.dependent_var[j])
+            axes[j].set_xlabel(self.independent_var)
+            axes[j].set_ylabel(self.dependent_var[j])
+            axes[j].set_title(f"{self.dependent_var[j]} vs. {self.independent_var}")
+            axes[j].legend(bbox_to_anchor=(1, 1), loc='upper right')
+            axes[j].grid()
+        fig.tight_layout()
+        fig.patch.set_facecolor('none')
+        return fig
+
 
 
 ## Example Usage

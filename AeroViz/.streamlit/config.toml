@@ -4,4 +4,12 @@ primaryColor="#339999"
 
 secondaryBackgroundColor="#403E43"
 
+#client.showErrorDetails = false
 
+#client.showErrorOnDeployedApp = false
+
+# for clean rendering
+[server]
+headless = true
+enableCORS = false
+enableXsrfProtection = false

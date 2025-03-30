@@ -1,0 +1,2288 @@
+Roque Corral
+Industria de Turbopropulsores S.A.
+28830 San Fernando de Henares, Madrid
+January 25, 2012
+Abstract
+The basic concepts of bladed-disk and dynamics and ﬂutter are reviewed. First and introduction
+to the engineering problems related with ﬂutter and its classiﬁcatios is given, then we review the basics
+of bladed-disk dynamics and unsteady aerodynamics for turbomachinery. Finally the tuned ﬂutter
+problem is formulated and the problem of its computation aﬀordable computations is adressed- The
+main objective is to make the reader aware of the physical origin of the concepts and their implications
+but not to provide design rules that could be readily applicable to particular designs.
+1
+Introduction
+Dynamic Aeroelasticity
+Elastic and aerodynamic forces interact between them to construct the discipline that is known as aeroe-
+lasticity. When unsteady eﬀects are retained then aeroelastic eﬀects are referred to as dynamic. There
+are three quite diﬀerent aeroelastic phenomena, namely, forced response, aerodynamic instabilities and
+ﬂutter.
+The objective here is to review these three concepts to focus afterward in the aeromechanic
+instability termed as ﬂutter. Flutter may occur in diﬀerent components, we will restrict ourselves here
+to bladed-disk ﬂutter although it is possible to see ﬂutter in other componens with or without cyclic
+symmetry such as rotating seals, panels or vane packets for instance.
+Forced Response
+Forced response of blades is due to the synchronous aerodynamic excitation of neighbouring blade-rows. These
+excitations may be due to the upstream wake velocity defects (vortical perturbations) and/or to inviscid potential
+pressure waves from either the preceding or following rows Hot streaks caused by combustor cams may give rise
+also to vortical and entropy perturbations. The excitation frequency is associated with the blade passing frequency
+and its higher or lower harmonics. The response occurs only at the crossings of the excitation frequency with
+the natural frequencies of the bladed-disk for which the bladed-disk are responsive due to the matching of the
+circumferential wave-length of the mode-shapes and the excitations, in other words for those modes for which the
+excitation order is the same than the nodal diameter.
+Figure 1 (left) sketches how wakes coming from the preceding row impinge in the rotor and give rise
+to unsteady forces. On the right strain gage measurements of a bladed-disk subject to a clean forced
+response are plot. The experimental Campbell diagram shows the presence of diﬀerent modes represented
+by dark quasi-horizontal lines and their excitation by several engine orders.
+ 
+ 
+RTO-EN-AVT-207 
+6 - 1 
+ 
+ 
+Bladed Disks: Flutter   
+
+1
+Introduction
+VKI-LS Structural Design of Aircraft Engines
+2
+Forced Response
+Frequency
+30
+110
+N (%)
+70
+90
+50
+Figure 1: Scheme of the forced response working principle. Left: Conceptual scheme. Mid-
+dle: Actual FR case. Right: Experimental Campbell diagram.
+Aeroelastic Instability
+Frequency
+30
+110
+N (%)
+70
+90
+50
+0
+0
+1
+1
+0
+1
+0
+1
+Figure 2: Scheme of the aerodynamic instability working principle
+Aerodynamic Instability
+Aerodynamic instabilities do not require contribution of neighbouring blade-rows. The aerodynamics may become
+unstable and cause unsteady perturbations. The simplest case is the vortex shedding behind a cylinder. The ﬂow
+separates in the rear part due to adverse pressure gradient in the cylinder forcing the separation and oscillation
+of the ﬂow with a well deﬁned frequency range, (St = ωd/U∞≃0.2). This frequency does not correlate with the
+shaft speed of the engine and the excitation is referred to as non-synchronous. Vortex shedding due to the airfoil
+trailing edges is just a conceptual model of the origin of the physical problem but it is not a problem in practice
+since the excitation frequency is very high since d/c ≪1. Engineering problems that fall under this category are
+rotating stall and buﬀeting for instance.
+Frequency excitation does not happen at pure tones but has a broadband contribution. This may be seen
+in ﬁgure 2 (right) where unsteady pressure measurements due to rotating stall are displayed. It may be
+appreciated the existence of several bands, not correlating with the shaft speed. The dynamic pressure
+associated to these instabilities is of the order of the dynamic head and therefore the forces involve are
+usually very high. However the response is not always visible since this depends on the coincidence with
+a resonance.
+Flutter
+Flutter is deﬁned as a blade response due to an asynchronous aeroelastic instability of isolated airfoils. In the same
+line that aerodynamic instabilities the presence of neighbouring blade-rows is not needed. The main diﬀerence
+here is that the airfoil motion is needed to develop an unstable behaviour, in other words while buﬀeting and
+rotating stall is a pure aerodynamic instability ﬂutter is an aeroelastic stability that requires the participation of
+the structure.
+ 
+ 
+6 - 2 
+RTO-EN-AVT-207 
+ 
+
+3
+VKI-LS Structural Design of Aircraft Engines
+1
+Introduction
+Flutter
+Frequency
+30
+110
+N (%)
+70
+90
+50
+Figure 3: Scheme of Flutter working principle
+T
+m
+p
+Choke Flutter
+Transonic Stall Flutter
+Subsonic Stall Flutter
+Supersonic Stall Flutter
+Supersonic Unstall Flutter
+25%
+75%
+50%
+100%
+Choke Line
+π
+Surge Line
+Operating Line
+Figure 4: Classical flutter compressor map (Left) and compressor snubbers used to prevent
+flutter
+Frequency response is necessarily associated to structural modes since their participation is needed. Figure
+?? emphasizes that the instability may develop in a purely inviscid ﬂow without any kind of separation,
+but the instability requires the presence of the structure. On the right the strain gage measurements of
+a ﬂuttering bladed-disk may be seen. Flutter creates high response along several points usually of the
+speed-line that do do coincide with any synchronous response. The modulus of the unsteady pressure
+scales with the vibration amplitude on the contrary than in a pure aerodynamic instability.
+Phenomenological Classiﬁcation and Description
+Flutter is primarily seen in in fans, front and middle compressor blades and high aspect ratio low.pressure
+turbines. Flutter is not a concern for HPT since the are made of thick, low aspect ratio blades. The types
+of ﬂutter observed in compressor blading are usually displayed in a compressor map (see Fig. 4). Flutter
+does not occur usually near the design point where compressor airfoils are operating close the nominal
+incidence, but at oﬀ-design conditions. The most common type of ﬂutter is stalled ﬂutter that is seen
+in fans and front compressor stages. A standard design criterion is to require that the ﬂutter margins is
+high enough to avoid it in all the operating range, however with the recent improvements in surge margin
+today is diﬃcult to provide enough ﬂutter margin to handle engine-to-engine variation and deterioration.
+Supersonic unstalled ﬂutter is easily seen in shrouded fans, however the design of shrouded fans is not a
+modern design practice. This type of ﬂutter tends to occur at climb conditions close to the maximum
+corrected speed. Choke ﬂutter is much less common and it is restricted to rear compressor stages.
+Low-pressure turbine ﬂutter may be detected in any high aspect ratio,H/c, rotor blade or vane. Flutter
+is detected in a wide envelope of the turbine operating range, but the most critical point is associated
+to Maximum Take-oﬀconditions where both the mechanical shaft speed and the turbine inlet pressure
+reach their maximum.
+RTO-EN-AVT-207 
+6 - 3 
+ 
+
+1
+Introduction
+VKI-LS Structural Design of Aircraft Engines
+4
+1991
+1992
+2001
+2
+4
+6
+8
+T1000
+T900
+T500
+T800
+Welded−Pair
+Interlock
+T700
+Aspect Ratio = Height/Chord
+year
+1997
+2005
+Figure 5: Evolution of LPT rotor blade aspect ratio
+Flutter occurred in early cantilever LPT designs (1F) on Pegasus, RB145, etc. during the development
+phase, the ﬁx was based in adding lacing wires or shrouds. Plain sided shrouds which had clearance
+at operating conditions ﬂuttered as well in 1st ﬂexural modes (Dart and Conway engines). The move
+to interlock shrouds, supposed to remain tight throughout the running range, gave rise to vibration
+characteristics similar to the ones encountered in snubbered fans that gave rise to ﬂutter of complex
+modes.
+Figure 5 displays the rotor blade aspect ratio evolution of a family of large civil aeroengines. It may
+be seen that in the early 90’s relatively large aspect ratio were designed and manufactured and that the
+interlock conﬁguration, where the rotor blades are supposed to remain in tight contact during the whole
+ﬂight envelope was abandoned in favour of cantilever blades welded-in-pair. The ultimate goal of welding
+the rotor blades in pairs was to mitigate ﬂutter eﬀects by providing additional aerodynamic damping.
+The drop and raise of the aspect ratio with time is associated to a combination of development problems
+in previous designs, change of design targets and improvements in prediction methodologies based in a
+more intensive use of simulation tools.
+Design limitations associated to the Flutter of NGVs in the last stages of LPTs are not uncommon,
+Compressor and turbines vanes are grouped in packets to reduce manufacturing costs. The number of
+vanes per packet ranges between 3 and 10. Flutter of vanes packets has unique ingredients since vane
+packets include modes which are very close in frequency that may interact among them [1, 2].
+Mathematical Classiﬁcation
+Flutter may be classiﬁed also from a mathematical point view.
+This is interesting since it helps to
+determine the level of modelling that it is required for each problem. Classical ﬂutter is encounter
+when just a single well separated unstable mode is encounter and the aerodynamics is linear since there
+are not highly non-linear phenomena, such as shock waves or separation. The perturbed unsteady ﬂow
+may be considered as a small perturbation of the mean ﬂow and may be computed using linear methods.
+This type of ﬂutter may be seen in subsonic low-pressure turbines and compressors.
+Non-linear ﬂutter happens for single-mode non-linear aerodynamics. Most, if not all, fan and compressor
+ﬂutter types fall under this category. Choke and supersonic unstall ﬂutter features shock waves that
+are responsible of the instability. Stall ﬂutter is based in the presence of large vortices and separated
+ 
+ 
+6 - 4 
+RTO-EN-AVT-207 
+ 
+
+5
+VKI-LS Structural Design of Aircraft Engines
+1
+Introduction
+regions interacting with the structure. Their simulation require non-linear aerodynamic models but some
+engineering approaches based in linear analysis and experience are also possible.
+Coalescence ﬂutter refers to instabilities that are caused due to the interaction among several modes .
+The simplest case is the classical bending-torsion interaction that may be see in aircraft wings. The
+existence of coalescence ﬂutter requires the presence of high enough aerodynamic forces that may couple
+the purely structural modes.
+Bladed-disks are designed to have separated mode families in terms of
+frequency but there are cases in which this interaction is unavoidable like in vane packets where several
+structural modes with nearly the same frequency may be found. Low density bladed-disks like fans and
+propfans may experience coupled ﬂutter due to frequency corrections due to aerodynamics eﬀects.
+Classical Flutter
+The main hypotheses involved are that the ﬂow remains attached to the airfoil and the instability is
+induced solely by the phase diﬀerence between the structure motion and the induced aerodynamics
+forces.Another implicit hypothesis is that a single mode is involved because diﬀerent modes are well
+apart in terms of frequency, we will expand this issue latter on to properly deﬁne the concept of separated
+modes. Bladed-disk ﬂutter add another particularity, namely that the diﬀerent airfoils of the bladed-disk
+interact aerodynamically among them. As it has already been mentioned this type of ﬂutter may be seen
+in intermediate- and low-pressure turbines
+Classical ﬂutter may be readily understood analysing whether the ﬂow extract or communicate energy to
+the airfoil. The standard form of looking at this problem is calculating the work-per-cycle performed
+by the ﬂuid ion the airfoil that may be expressed as
+Wcycle =
+Z T
+0
+Z
+Σblade
+pVblade.dAdt
+(1)
+if neither the velocity of blade,Vblade(t), nor the pressure on the airfoil surface, depend on the airfoil
+position then the work per cycle reduces to
+Wcycle =
+Z T
+0
+Vblade(t).F(t)dt.
+(2)
+Let us assume that the blade undergoes an harmonic motion, xblade = x0 sin ωt, thus the blade velocity is
+Vblade = ωx0 cos ωt, and that the blade force leads its displacement by an angle ψ, i.e. F = F0 sin(ωt+ψ)
+then the work-per-cycle is
+Wcycle = ωx0F0
+Z 2π/ω
+0
+cos ωt sin(ωt + ψ)dt = πx0F0 sin ψ
+(3)
+If ψ > 0, the structure absorbs energy from the ﬂow and the system is unstable. It is important to
+highlight that ﬂutter depends solely in the phase between the airfoil displacement and the aerodynamics
+force.
+Another form of looking at the problem is by representing the forces and displacements in the complex
+domain. In this case Wcycle = Re( ˆF ˆv) = Re( ˆFiωˆx) = −ωxRFI, and therefore the sign of the work is
+controlled by the imaginary part of the force which is nothing that the phase between the force and the
+displacement.
+The relationship between the work-per-cycle and the phase is illustrated in ﬁgure 6. If a force is applied
+on the airfoil and as a consequence the airfoil is displaced a positive work is performed and the structure
+absorbs energy. If forces and displacements are exactly in phase (ψ = 0) or anti-phase (ψ = π), the
+system is conservative and the work dissipated per cycle is null.
+RTO-EN-AVT-207 
+6 - 5 
+ 
+
+2
+Bladed-Disk Dynamics
+VKI-LS Structural Design of Aircraft Engines
+6
+ωt
+π
+2
+F
+x
+V
+ψ
+ωt
+sinψ
+Power
+ωt
+sinψ
+Power
+ωt
+π
+2
+x
+V
+F
+ψ
+Force Lead →Structure absorbs Energy
+Force Lag →Structure releases Energy
+Figure 6: Work-per-cycle for two different phasing between the force and the displacement
+2
+Bladed-Disk Dynamics
+A simple model is presented to describe the key elements of bladed-disk dynamics. Diﬀerent asymptotic
+limits are analysed to obtain analytical description of some of the more well known behaviours
+Introduction
+Linear bladed-disk dynamics is computed today routinely by gas turbine manufacturers using ﬁnite
+element methods. Complex blade shapes and disks are discretised using automatic grid generators, the
+governing equations are written in discrete form and the eigenvalue problem of set of ordinary diﬀerential
+equations solved to obtain the natural frequencies and the mode-shapes.Frequencies are needed to relate
+them with the shaft speed and construct Campbell diagrams and mode-shapes to derive aerodynamic
+damping and alternate stresses. The third building block of the bladed-disk dynamics, namely, the modal
+damping may not readily derived from FE computation and will not be addressed here.
+Rotor blades are coupled with their neighbours via the structural connections that inevitably exists either
+through the disks, the casings in the case of stator vanes, or through the shroud rings that are included
+to stiﬀen the assembly. The structural coupling among diﬀerent rotor blades signiﬁcantly inﬂuences the
+natural frequencies and mode-shapes of the assembly and need to be retained in the simulations. Analysis
+including just a single blade must be regarded as ﬁrst step in the simulation process.
+Perfectly tuned bladed-disks exhibit cyclic symmetry. This means that the whole wheel may be split in
+N identical sectors, probably containing several airfoils as it is always the case for sectored vanes, and
+impose cyclic boundary conditions in the periodic boundaries to reduce the computational domain from
+the whole wheel to a single sector largely reducing the computational time require to solve the problem.
+Bladed-Disk dynamics has been well reported. Here our interest here is to make a very short review of
+the underlying concepts resorting to a simpliﬁed lumped model that contains all the key ingredients.
+Disks, or any continuous structure with cyclic-symmetry vibrate in double nodal diameters (see Figure
+7). Nodal diameters are the locus of the points with zero displacement that traverse radially the disc.
+Mode-shapes with more nodal diameters have higher natural frequencies since the mode is stiﬀer. As the
+excitation frequency increases the disk may exhibit nodal circles which are points at constant radius with
+zero displacement.
+Bladed-Disks are constructed ﬁxing rotor blades to a disk, either using ﬁr-tree or dove tail attachments,
+or welding the rotor blades to the disk or even machining integral parts with disks and blades as it is
+usually the case in small compressors (Blisks). In any case with a large degree of generality it may be
+ 
+ 
+6 - 6 
+RTO-EN-AVT-207 
+ 
+
+7
+VKI-LS Structural Design of Aircraft Engines
+2
+Bladed-Disk Dynamics
+ND=2
+ND=3
+NC=2
+NC=3
+Figure 7: Sketch of disk mode-shapes. Left: Nodal diameters. Right: Nodal circles
+1st Blade Alone
+Mode
+1st Bladed Disc
+        Family
+Frequency
+1st Disc Family
+ND
+Figure 8: Sketch of the natural frequencies of a bladed-disk as a function of the nodal
+diameter
+stated that for very stiﬀdisks the lower natural frequencies are dominated by blade-alone modes, i.e.:
+modes which are very similar to those that can be obtained clamping the rotor blade at the root, while
+for ﬂexible disks the rotor blade and the disk modes may interact.
+Figure 8 displays the frequency versus the nodal diameter of a generic bladed-disk.
+The horizontal
+frequency represents the frequency that would be obtained by clamping the rotor blade at the attachment
+that does not depend on the nodal diameter since the disk is not included in the representation. The
+parabola-like curve represents the natural frequencies of the disk alone, that increase with the nodal
+diameter. The blend between these two curves is the bladed-disk 1stfamily of modes. It may be observed
+that for low nodal diameters the system is dominated by disk modes, while for high nodal diameters the
+bladed-disk natural frequencies corresponds in ﬁrst approximation with that of the rotor blade alone.
+The questions that arises immediately are: What does exactly mean a rigid disk? or How ﬂexible need
+to be a disk to see the disk dynamics? or How high need to be a nodal diameter to see just the rotor
+blade dynamics? We will try to answer this question by looking at a simpliﬁed bladed-disk model.
+Figure 9 show the frequency versus the nodal diameter of a low-pressure turbine real bladed-disk computed
+using a FE model. Several families of the assembly are plot, but it may be seen that all of them have the
+same structure that that sketch in ﬁgure 8. Low nodal diameters correspond to long wave-length modes
+while high nodal diameters have short wave-length and essentially the same frequency. This structure of
+the purely structural eigenvalues applies to any kind of bladed-disk.
+Bladed-Disk Lumped Model
+A tuned bladed-disk formed by a disk and a set of rotor blades attached to it, may be represented from
+a conceptual point of view as a ring on N identical masses, Md joined by a spring of stiﬀness, kd that
+RTO-EN-AVT-207 
+6 - 7 
+ 
+
+2
+Bladed-Disk Dynamics
+VKI-LS Structural Design of Aircraft Engines
+8
+0
+Max
+ND
+Nodal Diameter
+Normalized frequency
+ND = 3
+1st Family
+2nd Family
+3rd Family
+Disk Mode
+Figure 9: Typical natural frequency vs nodal diameter plot of a bladed-disk
+k b
+k d
+y
+i
+M i
+m i
+x i
+Figure 10: Simplest lumped model of a bladed-disk
+represents the disk and N identical masses mb, that represent the rotor blades, linked to the disk through
+a spring of stiﬀness, kb.
+The governing equations of the simpliﬁed bladed-disk are:
+Disk :
+Md
+d2xj
+dt2
+=
+kdisc(xj+1 −xj) −kdisc(xj −xj−1) + kblade(yj −xj)
+Blade :
+mb
+d2yj
+dt2
+=
+−kblade(yj −xj)
+(4)
+That in non-dimensional form become:
+µd2xj
+dτ 2
+=
+κ(xj+1 −2xj + xj−1) + (yj −xj)
+d2yj
+dτ 2
+=
+−(yj −xj)
+(5)
+where µ = Md
+mb
+is the disk to blade mass ratio , κ = kdisc
+kblade
+the disk to blade stiﬀness ratio and τ = t
+tc
+the time non-dimensionalised with the inverse of the blade alone natural frequency tc =
+r mb
+kblade
+.
+This is a system of 2N linear ODEs which is periodic in space and we seek for periodic solutions both in
+time and space. Since the problem is linear we may solve the problem harmonic by harmonic, i.e.:
+xj = bxei(nθj+eωt) and yj = byei(nθj+eωt)
+(6)
+where θj=j 2π
+N and n = 0, . . . , ±N/2 if N is even. Introducing the previous equation in the governing
+equations we obtain:
+ 
+1 −µeω2 + 4κ sin2 n∆θ
+2
+−1
+−1
+1 −eω2
+! (
+bx
+by
+)
+=
+(
+0
+0
+)
+(7)
+ 
+ 
+ 
+6 - 8 
+RTO-EN-AVT-207 
+
+9
+VKI-LS Structural Design of Aircraft Engines
+2
+Bladed-Disk Dynamics
+The characteristic equation providing the eigenvalues is thus:
+µeω4 −
+
+(µ + 1) + 4κ sin2 n∆θ
+2
+
+eω2 + 4κ sin2 n∆θ
+2
+= 0
+(8)
+The natural frequencies of the problem depend therefore of three parameters:
+ω2
+n
+ω2
+blade
+= f
+
+µ = Mdisk
+Mblade
+, κ = Kdisc
+Kblade
+, Θ = n∆θ = 2π n
+N
+
+(9)
+the disk to blade mass ratio, µ, the disk to blade mass stiﬀness, κ, and the non-dimensional wave number
+or nodal diameter, Θ. Equation 8 is a second order algebraic equation in ˜ω2 that can be solved analytically
+but it is more interesting to look at some asymptotic limits.
+Mathematical and Physical Interpretation
+There are a number of consequences that may be derived from the mathematical structure of the problem
+that have their physical counter part.
+1. First of all all the eigenvalues, ˜ω2, of the model problem are real. This may be readily seen by
+noting that the characteristic equation 8 is a second order equation of the form eω4 −2beω2 + c = 0
+whose solution is eω2 = b ±
+√
+b2 −c. Since b and c are always greater than zero, and b2 > c, then
+˜ω2 is always real and greater than zero. This physically means that the system is not damped and
+conserves the energy since the solution may be expanded in sines and cosines of constant amplitude
+according with Eq. 6.
+2. The eigenvalues are double since Eq. 6 does not change for positive or negative nodal diameters or
+wave numbers, n. This means that from a purely structural point of view the system is symmetric.
+The wave-length of the waves is λ = 2π/n.
+3. From a mathematical point of view the natural form of looking at the solution is as pairs of forward
+and backward travelling waves of wave-length λ and phase velocity c = ±˜ω/n
+x(t) = An cos(nθ + eωt) + Bn cos(nθ −eωt + φ)
+however this solution may be recombined and expressed as two standing-waves, setting φ = 0, of
+the form
+x(t) = (An + Bn) cos(nθ) cos(eωt) −(An −Bn) sin(nθj) sin(eωt)
+which is the standard form that FE packages provide the mode-shapes and laboratory experiments
+see bladed-disk assembly mode-shapes when they are excited in a stationary frame of reference.
+Asymptotic Limits
+To increase the understanding of this model problem let us consider the following asymptotic limits:
+1. The disk is much heavier than the rotor blades, i.e.: µ ≫1
+(a) κ ∼0(1) or κ ≪1
+(b) κ ≫1
+RTO-EN-AVT-207 
+6 - 9 
+ 
+
+2
+Bladed-Disk Dynamics
+VKI-LS Structural Design of Aircraft Engines
+10
+θ
+t
++c
+−c
+t
+2π/n
+sin kθ
+θ
+t
+cos k
+t
+θ
+θ
+Figure 11: Sketch of standing- (top) and travelling-wave (bottom) solutions
+κ/µ
+0
+blade
+ω
+ωdisc
+0(κ/µ)
+0
+1
+ND
+N/2
+ω
+Figure 12: Natural frequency vs nodal diameter of a bladed-disk with µ ≫1 and κ/µ ≪1
+2. Blade and disk masses are comparable, i.e.: µ ∼1
+(a) High nodal diameters n/N ≫κ−1/2
+(b) Low nodal diameters n/N ≪κ−1/2
+Heavy and Relatively Flexible Disk
+If the disk is much heavier than the blades (µ ≫1), the 0th order dispersion relation reduces to
+µω4 −µω2 = 0 , that basically means that the disk natural frequencies are very low, zeor in ﬁrst
+approximation,ω2
+Disk = 0, and the rotor blades natural frequencies correspond the blade-alone frequency,
+i.e.: ω2
+Blade = 1 in non-dimensional form. Disk and Blades frequencies are well apart and they do not
+interact among them. Rotor blade vibrates at its natural blade and the disc does not move. Next terms
+of the expansion are:
+ωDisk = 2
+rκ
+µ sin Θ
+2 and ωBlade = 1 −2κ
+µ sin2 Θ
+2
+and the corrections are small provided that κ/µ ≪1. This limit is not seen in practice since although
+disks of industrial gas turbines may be much heavier than the blades they are also stiﬀand κ ∼µ.
+Heavy and StiﬀDisk
+If the disk is much heavier and, consequently, stiﬀer than the rotor blades, µ/κ ∼o(1) , the situation is
+a bit diﬀerent. In the previous case disk dynamics decouples from the blade because their characteristic
+times were very diﬀerent. Now this is not true anymore but the disc is very stiﬀand has an independent
+behaviour.
+In this case the approximate solutions are: ωblade = 1 and ωDisc = 2
+rκ
+µ sin Θ
+2 .
+The
+approximate disc equation is now: d2xj
+dτ 2 = κ
+µ(xj+1 −2xj +xj−1) which is decoupled from the rotor blade
+dynamics.
+ 
+ 
+6 - 10 
+RTO-EN-AVT-207 
+ 
+
+11
+VKI-LS Structural Design of Aircraft Engines
+2
+Bladed-Disk Dynamics
+1+µ
+µ
+n
+N
+κ
+µ sin πn
+N
+2
+κ
+1+ µ
+2πn
+N
+κ−1/2
+1
+1
+Blade
+Disc
+ω
+Figure 13: Natural frequency as a fucntion of the nodal diameter of the modal problem for
+µ ∼o(1)
+Disk and Blade Masses Comparable
+The standard case in real life is that the mass of the disk and the rotor blades is comparable (µ ∼o(1)).
+This is true for low-pressure turbines and compressors while high-pressure turbines tend to have much
+heavier disks due to shaft rotational speed and temperature eﬀects and in the same direction compressor
+blisks tend to have very light blades.
+The dispersion relation may be written as:
+eω4 −
+
+1 + 1
+µ
+
++ 4
+κ
+µ
+
+sin2 Θ
+2
+
+eω2 + 4
+κ
+µ
+
+sin2 Θ
+2 = 0
+(10)
+Diﬀerent expansions for the solution may be obtained for High Nodal Diameters: n
+N ∝Θ ≫κ−1/2 or
+Low Nodal Diameters: n
+N ≪κ−1/2 , otherwise the dispersion relation may not be simpliﬁed.
+The derivation of the expansions for the diﬀerent limits are a simple exercise of regular/singular pertur-
+bations and are left to the reader as a simple exercise. The main conclusions are outlined in the following
+lines.
+• If 4
+
+κ
+µ
+
+sin2 Θ
+2 = 1
+ϵ ≪1 or κΘ2 ≪1, the low nodal diameter region which is dominated by the disk
+dynamic is obtained. The dispersion relation reduces to:
+eω4 −
+
+1 + 1
+µ
+
+eω2 = 0
+(11)
+and hence the natural frequency of the disk in zero in ﬁrst approximation, eω2
+Disk = 0, and the
+natural frequency of blade dominated modes experience a correction due to the Disk mass, eω2
+Blade =
+
+1 + 1
+µ
+
+.
+The governing equations for nodal diameters satisfying the condition n/N ≪κ−1/2 are:
+µd2xj
+dτ 2
+=
+(yj −xj)
+d2yj
+dτ 2
+=
+−(yj −xj)
+or
+d2(µxj + yj)
+dτ 2
+=
+0
+µd2(xj −yj)
+dτ 2
+=
+(1 + µ)(yj −xj)
+(12)
+– The 1st equation represents a rigid body motion of the center of mass of the sector (
+˜
+ωDisk
+2 = 0)
+of the sector.
+RTO-EN-AVT-207 
+6 - 11 
+ 
+
+3
+Unsteady Aerodynamics
+VKI-LS Structural Design of Aircraft Engines
+12
+k b
+M d
+mb
+Figure 14: Dynamic model representative of a blade-disk low nodal diameter motion
+– The 2nd equation is an harmonic motion with a natural frequency of ω2 = 1+µ
+µ . The blade and
+the disk move in anti-phase while the center of mass of the assembly is ﬁxed. The equivalent
+system is the following:
+Everything happens as if the disk sectors were uncoupled among them and the rotor blade and the
+disk were joined through a spring of stiﬀness kb.
+• If 4
+
+κ
+µ
+
+sin2 Θ
+2 = 1
+ϵ ≫1,or κΘ2 ≫1, the high nodal diameter limit of the problem is obtained.
+The dispersion relation reduces in this case to:
+ϵeω4 −eω2 + 1 = 0
+and hence eω2
+Disk = 1
+ϵ and eω2
+Blade = 1. The natural frequency of the rotor blade dominated modes
+is the same a similar to that of the blade alone case
+• if ϵ ∼1 , or n/N ∼κ−1
+2 , no simpliﬁcation is possible
+3
+Unsteady Aerodynamics
+Introduction
+Unsteady aerodynamics associated to vibrating airfoils is complex and little can be said with a large degree
+of generality.Computational methods based on the solution of the linearized Navier-Stokes equations are
+widely used in the gas turbine industry, and even fully non-linear unsteady methods are used for some
+speciﬁc problems. The accuracy of computational method is acceptable for most of the cases, especially
+within the industry where codes have been tuned for speciﬁc ﬂows, however the physical understanding
+of these ﬂows is reduced.
+Unsteady pressure distributions have little to do with steady pressure ﬁelds and the variability is even
+larger. To begin with the base mean ﬂow has a strong inﬂuence in the perturbations. Steady aerodynamics
+of low-pressure turbines which is a high subsonic Mach number ﬂow subject to a large turning, has little to
+do with compressor aerodynamics that may even change dramatically from operating point to operating
+point. Compressor ﬂows have low turning but may include shock waves at diﬀerent positions. Moreover
+new parameters such as the reduced frequency, or Strouhal number, the phasing between the vibration
+of neighbouring airfoils or the mode-shapes themself appear, making the variability of the problem very
+large. On the top of that the unsteady pressure itself is not the main interest of the aerolastic analyst,
+but the aerodynamic damping, that depends complety on the phasing between the unsteady pressure
+and the blade surface. For all these reasons and general view of the unsteady aerodynamics of vibrating
+airfoils in turbomachinery is not available.
+Large modulus of unsteady pressure may be seen in high velocity regions, such as the pressure side of
+turbines and high gradient regions, such as the vecinity of shock waves (see Fig. 15).
+ 
+ 
+6 - 12 
+RTO-EN-AVT-207 
+ 
+
+13
+VKI-LS Structural Design of Aircraft Engines
+3
+Unsteady Aerodynamics
+Figure 15: Unsteady pressure of a transonic compressor vibrating in flap mode.
+Unsteady Aerodynamics of Vibrating Airfoils
+The order of magnitude of the modulus of unsteady pressure of a vibrating airfoil with amplitude δmax
+and angular frequency ω, may be estimated is may be estimated using the momentum equation of an
+inviscid ﬂow
+ρDv
+Dt = −∇p
+(13)
+If we assume that the ﬂow may be decomposed in a mean ﬂow where v = v0(x) + v′(x, t), p = p0(x) +
+p′(x, t) where the sub-index 0 denotes mean ﬂow and the prime the unsteady perturbed variables. The
+order of magnitude of the unsteady perturbation, ∆pc, may be estimated as
+∆pc ∼ρUcωδmax max(1, k)
+(14)
+where the reduced frequency, k, or the Strouhal number,St , is deﬁned as k = ωc/Uc,where c, is the chord
+or the characteristic length and Uc is a characteristic velocity. For ﬂutter cases the reduced frequency is
+of order unity, typically k < 1 and therefore in practice
+∆pc ∼ρUcωδmax.
+(15)
+The unsteady force in the airfoil is then
+F a ∼ρUcωδmaxS = Fc
+(16)
+where S is the airfoil surface. The unsteady forced in the jth-airfoil may be expressed as:
+F a
+j = Fc eF(k, σ, t).
+(17)
+The inter-blade phase angle (IBPA) σ is the phase diﬀerence between two adjacent airfoils and is directly
+related with the nodal diameter. Figure 16 sketches the vibration of a compressor airfoil with σ = 90◦.The
+minimum ﬂow unit needed to represent this vibration is four passages. Airfoils 2 and 4 have reached its
+maximum deﬂection and vibrate in anti-phase while airfoils 1 and 3 are passing through its zero deﬂection
+position but with opposite velocities. Nodal diameter ND = Nb/2 corresponds with σ = 180◦and has
+RTO-EN-AVT-207 
+6 - 13 
+ 
+
+3
+Unsteady Aerodynamics
+VKI-LS Structural Design of Aircraft Engines
+14
+2
+σ =90
+Uc
+1
+3
+4
+1
+ω
+C
+δmax
+Figure 16: Inter-blade phase angle interpretation
+the shorter wave-length corresponding to two passages, while ND = 1 corresponds to σ = 2π/Nb and
+would involved the simulation of the whole wheel.
+The most distinctive feature of the unsteady aerodynamics of vibrating airfoils in turbomachinery is that
+the unsteady force in the jth-airfoil depends on the motion of all the airfoils,
+F a
+j = Fc eFj(k, x1, x2, . . . , xj, . . . , xN, t)
+(18)
+In the particular case that the airfoils motion is harmonic in time, xj = bxωeiωt and that all the airfoils
+move with a common inter-blade phase angle, xj = bxneinxj, then the force in the airfoil j, may be
+expressed as a summation of the contribution of the diﬀerent temporal and spatial harmonics
+F a
+j = Re(Fc
+X
+ω
+X
+n
+bFn,ω(x)ei(nxj+ωt))
+(19)
+Moreover, if the unsteady perturbations are much smaller than the mean ﬂow, p′(x, t) ≪p(x), the
+unsteady aerodynamics is linear. A necessary condition is then that
+∆pc
+pc
+∼ρcUcωδMax
+pc
+∼M 2StδMax
+c
+(20)
+that always can be achieved if the blade displacements are small enough, δMax/c ≪1 and typically
+δMax/c ∼10−2. In this case the solution is harmonic in time, i.e.: composed in ﬁrst in ﬁrst approximation
+of a single harmonic corresponding with the vibration frequency. The contribution of higher harmonics
+is negligible since are the results of non-linear interactions,
+F a
+j = Re(Fc
+X
+n
+bFnei(nxj+ωt))
+(21)
+The unsteady pressure, or any perturbation variable, are also proportional to the vibration amplitude
+and therefore it is interesting to scale the blade force with δMax
+F a
+j = Re(Fc/δmax
+X
+n
+bfn(ω)bxnei(nxj+ωt))
+(22)
+It is interesting to note that the unsteady force Fourier coeﬃcients, bfn, depend on the non-dimensional
+angular frequency and the inter-blade phase angle, bfn(k = ωc/Uc, σ) and are complex numbers since
+aerodynamics eﬀects translates in an apparent stiﬀness (Real part) and damping (Imaginary part)
+ 
+ 
+6 - 14 
+RTO-EN-AVT-207 
+ 
+
+15
+VKI-LS Structural Design of Aircraft Engines
+3
+Unsteady Aerodynamics
+n
+Vw
+Σ
+Figure 17: Moving surface of a vibrating airfoil
+Aerodynamic Work-per-Cycle
+Relationship with Aerodynamic Coeﬃcients
+The work-per-cycle performed by the aerodynamic
+forces is
+Waero =
+Z T
+0
+Z
+Σ
+p(x, t)Vw.ndA
+
+dt
+(23)
+If we assume that there is no spatial dependency of the pressure to simplify the formulation, i.e.: p = p(t),
+and the same is true for the airfoil motion, Vw = Vw(t), then
+Z
+Σ
+p(x, t)Vw(x, t).ndA = Vw.
+Z
+Σ
+p(t)ndA = Vw.F(t)
+(24)
+and we seek harmonic solutions xw = bxeiωt ⇒Vw(x, t) = iωbxweiωt and F = bFeiωt then the work per
+cycle is Wwork−per−cycle = π( bFIbxR−bFRbxI). If we set the time origin such as x = ˆxR cos ωt, (i.e.: ˆxI = 0),
+then
+Wwork−per−cycle = π bFIbxR
+(25)
+This means that the damping is associated to the imaginary part of the forced coeﬃcient. In the general
+case that the pressure and the mode-shape are a function of the position the same result may be obtained
+if the order of the spatial and temporal integral is exchanged.
+Non-Dimensional Aerodynamic Work
+Aerodynamic work-per-cycle, Waero, may be scaled from a
+pure aerodynamic point of view using the unsteady pressure estimate (Eq. 15) as
+Θ =
+Waero
+2πρUcωδ2S
+(26)
+This non-dimensionalization absorbs the quadratic dependency with the amplitude that is obtained for
+linear aerodynamics. Non-dimensional aerodynamic work, Θ, depends on the following parameters
+Θ = Θ(
+k
+|{z},
+Mode-shape,
+|
+{z
+}
+δ
+c
+|{z}
+,
+M , Re , αin
+|
+{z
+})
+Freq.
+IBPA+Family
+Non-Linear
+Steady-Field
+(27)
+Reduced frequency, k, is usually used as a target design criterion to ﬁx ﬂutter problems, both in the
+conceptual and in the detailed design phase. Natural frequencies are raised either increasing the blade
+chord, the thickness or both. The most powerful mechanism of controlling the reduced frequency is the
+blade aspect ratio.
+However aerodynamic damping sensitivity with the mode-shape is much larger.Damping change strongly
+with the inter-blade phase angle, σ, but even focusing in the most critical σ, the position of the centre of
+torsion of the airfoil may dramatically change the aerodynamic damping. The most clear example is the
+RTO-EN-AVT-207 
+6 - 15 
+ 
+
+3
+Unsteady Aerodynamics
+VKI-LS Structural Design of Aircraft Engines
+16
+change in aerodynamic damping between ﬂap and torsion modes. The center of torsion location must be
+carefully controlled to drive the designs in the right direction.
+Aerodynamic damping is in general insensitive to the vibration amplitude except in particular non-linear
+problems, such as shock ﬂutter, where the aerodynamic damping may even change of sign with the
+vibration amplitude.
+Steady aerodynamics ﬂow-ﬁeld obviously change the aerodynamic damping and is responsible of the
+completely diﬀerent behaviour of compressor and turbines, but for a given application the variability
+with the Mach number for instance is reduced since this is ﬁxed by purely aerodynamic criteria and it
+is not a free parameter. Sensitivity of the aerodynamic damping to the Reynolds number is small, since
+the unsteady pressure caused by the airfoil motion are mainly an inviscid phenomenon. Perhaps the only
+exception would be compressor stall ﬂutter where separation is controlled by viscous eﬀects. Incidence
+change caused by shaft speed variation may heavily change the ﬂow-ﬁeld and hence the aerodynamic
+damping, especially in compressors.
+Aerodynamic damping may be also scaled assuming that it will take part of the airfoil motion equations,
+that for a single degree of freedom systems take the form:
+m¨x + c ˙x + kx = 0
+(28)
+that may be non-dimensionalised using τ = ωnt and ˙x = x′ωn to obtain
+x′′ + 2ξx′ + x′ = 0
+(29)
+where the Critical Damping Ratio, ξ, is deﬁned as ξ = c/2mωn. Viscous damping, c, is related with
+the aerodynamic forces as c =
+1
+ωn Im( ˆFa/ˆxR), where ˆxR is the real part of the displacement that in practice
+may be translated as the maximum displacement of the airfoil, ˆxR = δmax. Taking into account that the
+imaginary part of the aerodynamic force and the aerodynamic work are related by ˆFa = Waero/˜xR, the
+critical damping ratio reduces to
+ξ =
+1
+mω2n
+Waero
+2πδ2max
+(30)
+which is nothing else that another form of non-dimensionalizing the aerodynamic work. The aerodynamics
+work is usually obtained from an unsteady aerodynamic simulation while m, here is the modal mass.
+Critical damping ratio and non-dimensional work are related by the expression
+ξ = ΘρUcS/mωn = µΘ/k
+(31)
+where µ = ρcS/m which is a measure of the ratio between the mass of the air surrounding the airfoil
+and the mass of the blade, µ ∼mair/mblade. It must be noticed that a change of the blade material
+density may change the critical damping ratio while leaving unaﬀected the non-dimensional aerodynamic
+work-per-cycle which is a purely aerodynamic quantity.
+Reduced Frequency and Mode-Shape Eﬀects in Turbines
+It has already been mentioned that to increase the reduced frequency is the most standar mechanisms
+to stabilise unstable conﬁgurations. To illustriate this phenomenon we have chosen a state of the art
+low-pressure turbine aifoil.
+ 
+ 
+6 - 16 
+RTO-EN-AVT-207 
+ 
+
+17
+VKI-LS Structural Design of Aircraft Engines
+3
+Unsteady Aerodynamics
+ξ
+η
+Edgewise
+Flap
+Torsion
+Figure 18: Description of fundamental mode-shapes
+−180
+−180
+−180
+−90
+−90
+−90
+0
+0
+0
+90
+90
+90
+180
+180
+180
+IBPA [deg]
+IBPA [deg]
+IBPA [deg]
+−5
+0
+5
+10
+15
+Damping Coefficient
+−5
+0
+5
+10
+15
+20
+Damping Coefficient
+−5
+Unstable
+Stable
+Unstable
+Stable
+Unstable
+Stable
+0
+5
+10
+15
+20
+25
+Damping Coefficient
+Flap Mode
+k= 0.1
+Torsion Mode
+k= 1
+k= 0.7
+k= 0.4
+k= 0.2
+k= 1
+k= 0.7
+k= 0.4
+k= 0.2
+k= 0.1
+k= 1
+k= 0.7
+k= 0.4
+k= 0.2
+k= 0.1
+Edgewise Mode
+Figure 19: Damping Coefficient as a fucntion of IBFA and reduced frequency for the flap
+(left), torsion (middle) and edge-wise (right) modes.
+The fundamental modeshapes are described in Fig. 18. The edgewise and ﬂap modes are deﬁned as
+bending modes along and perpendicular to the chord. The centre of torsion of the third fundamental
+mode is located at the l.e.
+of the airfoil.
+The airfoil used in all the simulations corresponds to the
+mid-section of a representative rotor blade (αinlet = 37◦, αexit = 64◦, Mis = 0.76 Re = 2.5 × 105).
+Modern LPTs may have large separation bubbles on the pressure side side of the airfoils that may not be
+accounted for using inviscid simulations. They induce phase shifts in the p.s. of the airfoil whose relative
+importance depends on the case. Usually, the contribution to the work per cycle of the airfoil pressure
+side is smaller than that of the suction side. However to avoid any further problems, all the simulations
+performed in the present study have retained viscous eﬀects since its extra cost compared to the inviscid
+simulations is negligible.
+Figure 19 shows the damping coeﬃcient as a function of the IBPA for the diﬀerent fundamental modes
+previously described. In general the IBPA may be deﬁned as σ = 2π(m −1)/NS where m = 1 . . . Ns and
+Ns is the number of sectors. For a freestanding airfoil Ns = Nblades. The stabilizing eﬀect of the reduced
+frequency can be seen for all the modes but there is always a region of unstable IBPA for the computed
+range of reduced frequencies. Torsion modes are the most unstable ones, this is a quite general trend,
+but all the modes may become unstable if the reduced frequency is low enough . More details may be
+found in [3].
+For low reduced frequencies non-dimensional work-per-cycle has a sine-like dependency with the inter-
+blade phase-angle.
+This is a clear indication that the destabilizing eﬀect is due to the presence of
+immediately adjacent airfoils. The damping curves show as well some spikes superimpose to the sine-like
+curves that are due to acoustic resonances at the inlet and outlet of the airfoil and that show-up in the
+simulations. The IBPA at which the resonances occurs increases with the reduced frequency. It is clear
+RTO-EN-AVT-207 
+6 - 17 
+ 
+
+3
+Unsteady Aerodynamics
+VKI-LS Structural Design of Aircraft Engines
+18
+Figure 20: Physics of a low-pressure turbine aerodamping
+that for high enough reduced frequency all the modes may be stabilized being the frequency at which
+this happens mode dependent.
+Figure 20 summarises well understood unsteady eﬀects of a single low-pressure turbine airfoil at relatively
+low reduced frequencies (k ≃0.2) for a torsion about the l.e. mode.
+The simulations of the fundamental modes for a single airfoil indicate that, the most unstable IBPA is
+around ±90◦, depending on the mode, while the σ = 0◦and σ = 180◦are only slightly damped. This
+behaviour may be readily understood by noting that the modulus of the unsteady pressure for the σ = 0◦
+case is much smaller than for the σ = 180◦case. This is sketched in Fig. 20 where the modulus of
+the unsteady pressure generated by the airfoil vibrating in torsion about the leading edge for σ = 0◦,
+σ = 90◦and σ = 180◦are displayed. It is clearly seen that the modulus of the unsteady pressure is
+very small for σ = 0◦since the relative displacement between the two airfoils in the throat region is very
+small compared to the one that is obtained for σ = 180◦, where both airfoils move in anti-phase. For an
+σ = 90◦the modulus of the unsteady pressure lies in between the other two.
+Since the work per cycle depends strongly on the phase between the unsteady pressure and the blade
+displacement this aspect is reviewed in the following lines. Figure 20 (middle) displays the unsteady
+pressure phase for the σ = 0◦, σ = 90◦and σ = 180◦.
+It is important to recall that the unsteady
+pressure on the suction side (ﬁlled symbols) is signiﬁcantly larger than the one on the pressure side (open
+symbols). Therefore, only the phase of the former will be discussed. The phase of σ = 0◦, and σ = 180◦
+is zero in ﬁrst approximation. This means that, both modes are neutral from a stability point of view.
+When the blade moves closing the throat, the pressure is increased in that region, tending to damp the
+vibration in that part of the cycle but that energy is transmitted back to the airfoil in the second part of
+the cycle. The damping for σ = 180◦is dominated by the pressure side which is the only region with a
+non-null phase with the airfoil. The most critical IBPAs are those in which the modulus of the unsteady
+pressure is high and the pressure raise when the airfoil moves opening the throat (i.e. when the motion
+of the suction-side neighboring airfoil closing the throat leads the motion of the reference airfoil)
+Two diﬀerent concepts are used in the industry to migitate ﬂutter in turbines. The most standard and
+widespread solution is the use of interlock rotors where the rotor blade shrouds are let to get in contact
+ 
+ 
+6 - 18 
+RTO-EN-AVT-207 
+ 
+
+19
+VKI-LS Structural Design of Aircraft Engines
+3
+Unsteady Aerodynamics
+Cantilever
+Welded−pair
+Interlock
+Figure 21: Different solutions adopted to mitigate flutter on turbine airfoils
+Figure 22: Mach number flow-field of a choked compressor
+to increase the frequency of the assembly, especially for high NDs, and modify the mode-shapes. Se
+second solution, adopted whenever possible in the RR group is the used of welded-in-pair rotor blades,
+that do not increase signiﬁcantly the natural frequencies of the bladed-disk but increase dubstantially
+the aerodynamics damping (see Figure 21)
+Compressor Choke Flutter
+Compressors operate in a wide range of pressure ratios and shaft speeds that give rise to quite diﬀerent
+base ﬂow-ﬁelds. A particular case is that in which there is a shock wave inside the compressor passage
+as it is depicted in ﬁgure 22. The shock-wave extends from the trailing-edge of the suction side to the
+compressor side. In this case the instability is caused by the shock wave oscillation between neighbouring
+airfoils caused by the airfoil vibration that modiﬁes the throat area. The instability occurs at large reduced
+frequencies (k ≫0.3−0.4) and the sensitivity to this parameter is low. Choke ﬂutter is less common than
+other types of compressor ﬂutter and it is usually experienced by middle and rear compressor stages.
+The numerical prediction of the instability is diﬃcult (author?) [4] since this is the result of the com-
+pensation of two large quantities as it is sketched in ﬁgure 23. The oscillation of the shock-wave causes
+large unsteady perturbations in its vecinity, both in the pressure and suction sides. The pressure side is
+stabilizing while the suction side is instabilizaing. The global result depends on the substraction of both
+quantities.
+The problem is highly non-linear since the perturbations caused by the oscillation of the shock-wave are
+large. In this case it has been shown that the stability of the system depends on the vibration amplitude.
+For small amplitudes the system may be unstable, but for large vibration amplitudes the non-linearity
+may lead to an stable situation as it is shown in ﬁgure
+RTO-EN-AVT-207 
+6 - 19 
+ 
+
+3
+Unsteady Aerodynamics
+VKI-LS Structural Design of Aircraft Engines
+20
+x/c (%)
+0
+Damping Coefficient
+Pressure Side
+Stable
+Unstable
+Suction Side
+25
+50
+75
+0
+100
+Figure 23: Damping coefficient distribution of the pressure (solid line) and suction side
+(dashed line) of a choke compressor.
+Figure 24: Stability of a choked compressor as a function the vibration amplitude
+Computation of Unsteady Forces
+The Navier-Stokes equations in conservative form can be written as
+dU
+dt = R(U),
+(32)
+where U are the conservative variables. The ﬂow may be decomposed in two parts: a steady ﬂow and a
+small harmonic unsteady perturbation:
+U(x, t) = U0(x) + Re(bu(x)eiωt)
+(33)
+where U0 is the background steady or mean ﬂow and bu is the complex perturbation.
+The unsteady
+perturbation u ≪Uo. The background steady ﬂow is solved using the fully non-linear steady RANS
+equations. The equations may be linearised about the mean ﬂow to obtain
+du
+dt = A(U0)u.
+(34)
+Aerodynamic forces are usually computed in a very speciﬁc form:
+1. Harmonic in time. This allows to:
+(a) Transform the Navier-Stokes equations to the Fourier space (u= ˆueiωt) to remove the time
+dependent character of the equations
+iωˆu = A(U0)ˆu
+(35)
+(b) Solve the resulting set of complex equations in a pseudo-time,τ, to speed-up the convergence
+ 
+ 
+6 - 20 
+RTO-EN-AVT-207 
+ 
+
+21
+VKI-LS Structural Design of Aircraft Engines
+4
+Flutter Stability
+k b
+k d
+y
+i
+M i
+m i
+x i
+F
+F
+F
+j
+j+1
+j−1
+a
+a
+a
+Figure 25: Mass-spring lumped model including aerodynamic forces
+of the system.
+du
+dτ + iωˆu = A(U0)ˆu
+(36)
+2. Travelling-Wave form, or in other words constant IBPA. This allows to reduce the computational
+domain to a single passage using phase shifted boundary conditions and avoid the computation of
+the ﬂow-ﬁeld in the whole bladed-disk wheel, signiﬁcantly reducing the computational time. The
+phase-shifted boundary conditions in the Fourier space may be expressed as:
+c.c.: ˆu(θ0 + pitch) = ˆu(θ)eiσ
+(37)
+where σ is the inter-blade phase-angle. The same condition may be expressed in the physical domain
+as u(θ0 + pitch, t) = u(θ, t −∆T).
+The system is solved Nω×Nσtimes where Nω is the number of frequencies (family modes) to be considered,
+Nσ is the Number of IBPAs, if all of them are computed them Nσ= 2 NDs.
+This is about 10× to
+100× times more eﬃcient than solving the time-dependent non-linear equations and reaching a periodic
+converged state. Most if not all gas turbine manufacturers follow this approach.
+4
+Flutter Stability
+Flutter is an aeromechanic instability and therefore requires the joined formulation of the aerodynamic
+and the structural problem to derive any meaningful result. Here we will ﬁrst introduce the aerodynamic
+forces in our simpliﬁed lumped model and then we will generalised the formulation to arbitrary bladed-
+disks.
+Aeroelastic Lumped Model
+The basic lumped model that we have used in previous sections may be extended to include the aerody-
+namic forces due to the motion of the arfoil itself. The governing equations of the disk are not modiﬁed
+MDisk
+d2xj
+dt2 = kdisc(xj+1 −xj) −kdisc(xj −xj−1) + kblade(yj −xj)
+(38)
+but the rotor blade equation have to include the motion dependent aerodynamic forces, F a
+j ,
+mb
+d2yj
+dt2 = −kblade(yj −xj) + F a
+j (x1, x2, . . . , xN, ω)
+(39)
+The most distintive characterisitics of the aerodynamic forces is that they couple the motion of all the
+blades while the coupling through the disk elastic forces just couples the neighbouring sector, i.e.: sector
+j is only coupled with sectors j ± 1. Obviously the aerodynamic inﬂuence of near-by airfoils is greater
+than that that are far apart, but conceptually all the blades are coupled through the aerodynamics. Even
+RTO-EN-AVT-207 
+6 - 21 
+ 
+
+4
+Flutter Stability
+VKI-LS Structural Design of Aircraft Engines
+22
+if the disk is inﬁnitely stiﬀand we decouple the blades from the disk assuming that xj = 0 for all j
+resulting in a set of N independent equations, the aerodynamics recouples all the blades because the the
+motion of the airfoil j inﬂuence the rest of the blades. The non-dimensional form of the equation is:
+µd2xj
+dτ 2
+=
+κ(xj+1 −2xj + xj−1) + (yj −xj)
+d2yj
+dτ 2
+=
+−(yj −xj) + eF a(x1, . . . , xN)
+(40)
+where µ = M
+m , κ = kdisk
+kblade
+, τ = t
+tc
+, tc =
+r
+m
+kblade
+= ω−1
+a
+as it has been mentioned before. Aerodynamics
+is a small correction of the structural problem. Non-dimensional forces, eF a = F a/mω2
+a, are of the
+order of the critical damping ratio, ξ, typically around 10−2.
+To further progress in the understanding of the ﬂutter problem is essential to ﬁrst understand how the
+aerodynamic forces interact with the structure, and how they are computed. This is better seen recurring
+to a more generic formulation that eventually could be applied to any bladed-disk.
+Formulation of the Tuned Flutter Problem
+The equations of motion for the small amplitude vibration of a perfectly tuned bladed disk with N
+identical sectors, in the absence of any external forcing except for the linear aerodynamic eﬀects, take
+the form
+M¨x + Kx = L(x)aero,
+(41)
+where the bladed disk degrees of freedom (after an appropriate FEM discretization) are stored in x(t), M
+and K are the mass and stiﬀness matrices, both symmetric and positive deﬁnite, and Laero accounts for
+the aerodynamic forces. Structural damping has been neglected; the only source of damping considered
+in the formulation above is that coming from the aerodynamic terms, which is typically the dominating
+one for low reduced frequencies, see e.g. [? ].
+The vibration modes of the system can be written using complex notation as
+x = Xeiωt + c.c.,
+(42)
+where the vibration mode shape X and the mode oscillation frequency and damping ω (c.c. stands for
+the complex conjugate) are given by the following eigenvalue problem
+(K −ω2M)X = Maero(ω)X,
+(43)
+which requires the knowledge of the matrix of aerodynamic forces Maero as a function of ω. The calcu-
+lation of Maero for a given ω value involves the solution of the linearized Navier-Stokes equations that
+prescribe the airﬂow around the blades for all linearly independent blade displacements. Therefore, the
+computation of the bladed disk vibration characteristics using the fully coupled structural-aerodynamic
+formulation given by Eqn. (43) is extremely costly and simply not realizable for any realistic conﬁguration
+of practical interest.
+The computational cost of this problem is drastically reduced if one takes into account the fact that the
+aerodynamic eﬀects produce only small variations of the purely structural vibration frequencies. With
+this idea in mind, we will ﬁrst rewrite Eqn. (43) using the structural mode basis and then apply an
+asymptotic perturbation method to obtain the ﬁrst order aerodynamic correction of the purely structural
+vibration characteristics. This is a well known procedure to compute the aerodynamic stability properties
+ 
+ 
+6 - 22 
+RTO-EN-AVT-207 
+ 
+
+23
+VKI-LS Structural Design of Aircraft Engines
+4
+Flutter Stability
+of tuned bladed disks (see [? ? ] for a recent application of this approach in two and three dimensional
+conﬁgurations).
+Structural vibration modes.
+If the response vector (42) is partitioned as
+X =
+
+
+X1
+X2
+...
+XN
+
+
+,
+(44)
+with the vector Xj containing the displacements of the m degrees of freedom associated with sector j,
+then the problem that gives the natural oscillations of the tuned bladed disk without aerodynamic eﬀects
+(Eqn. (43) with Maero = 0) takes the form
+(
+
+
+K
+Kc
+0
+· · ·
+KT
+c
+KT
+c
+K
+Kc
+· · ·
+0
+...
+...
+Kc
+0
+· · ·
+KT
+c
+K
+
+
+−ω2
+
+
+M
+Mc
+0
+· · ·
+M T
+c
+M T
+c
+M
+Mc
+· · ·
+0
+...
+...
+Mc
+0
+· · ·
+M T
+c
+M
+
+
+)
+
+
+X1
+X2
+...
+XN
+
+
+=
+
+
+0
+0
+...
+0
+
+
+,
+(45)
+where the m × m sector stiﬀness and mass matrices K and M are symmetric and the coupling between
+adjacent sectors is represented by the coupling stiﬀness and mass matrices Kc and Mc. In our model
+problem the mass coupling matrix is Mc = 0 and the number of DOF of the sector is m = 2.
+The cyclic symmetry of the bladed disk (that is composed of a sector repeated N times and arranged
+periodically) is now evident in the matrices in Eqn. (45) that exhibit a block circulant structure, i.e.,
+each row can be obtained from the previous one after a wrap-around forward block shift. The associated
+complex eigenvectors
+
+
+X1
+...
+Xj
+...
+XN
+
+
+=
+
+
+Zkei( 2πk
+N )1
+...
+Zkei( 2πk
+N )j
+...
+Zkei( 2πk
+N )N
+
+
+,
+for
+k = 1 . . . N,
+(46)
+correspond to travelling waves with k nodal diameters that, taking into account Eqn. (42), rotate around
+the annulus with constant angular velocity
+ω
+(2πk/N). The complex vector Zk of size m contains the mode
+shape details and the only eigenvector variation from sector to sector is just a phase increment of amount
+2πk
+N (the so-called “interblade phase angle”). The vector Zk can be regarded as the k-th mode of the
+discrete Fourier transform of the N-periodic sequence of the sector degrees of freedom along the complete
+structure, X1, . . . XN; recall that the relation between Fourier modes F1, . . . FN and sector degrees of
+freedom S1, . . . SN is given by
+Sj =
+N
+X
+k=1
+Fkei( 2πk
+N )j,
+for
+j = 1 . . . N,
+and
+(47)
+Fk = 1
+N
+N
+X
+j=1
+Sje−i( 2πj
+N )k,
+for
+k = 1 . . . N.
+(48)
+Note also that it is enough to consider the value of k modulo N; the change k →k +N, that corresponds
+to the addition of a complete turn around the rotor, leaves all the above expressions unchanged. This
+eﬀectively means that the structure is symmetric and does not distinguish between forward and backward
+RTO-EN-AVT-207 
+6 - 23 
+ 
+
+4
+Flutter Stability
+VKI-LS Structural Design of Aircraft Engines
+24
+travelling-waves.
+If we now insert expression (46) into Eqn. (45), N decoupled eigenvalue problems of size m are obtained
+((Kc −ω2Mc)ei( 2πk
+N ) + (Kc −ω2Mc)Te−i( 2πk
+N ) + K −ω2M)Zk = 0,
+for
+k = 1 . . . N,
+(49)
+which, for each k, have m real eigenvalues, ω2
+k1, . . . , ω2
+km ≥0, that give the oscillation frequencies of the
+structure. The associated eigenvectors, Zk1, . . . , Zkm, are, in general, complex. Notice that the cyclic
+symmetry allows to drastically reduce the computational eﬀort required to obtain the vibration modes
+of the tuned bladed disk: from O(N 3m3) for solving Eqn. (45) to only O(Nm3) for the N eigenvalue
+problems in Eqn. (46).
+The eigenvalue equation Eqn. (49) remains invariant under the changes
+k →N −k,
+ω2
+k →ω2
+N−k
+and
+Zk →¯ZN−k,
+(50)
+and thus, for every travelling wave rotating in one direction, there is also another identical one that rotates
+in the opposite direction with the same velocity. This symmetry comes from the fact that the original
+system (41) remains unchanged after time is reversed, t →−t, because it does not exhibit any dissipation
+at all. Travelling wave modes come thus in counter-propagating pairs, except for those associated with
+k = 0 and k = N
+2 (present only for N = ˙2), which have real Zk and can be seen as non propagative
+standing waves. Property (50) implies that the plot of the natural frequencies versus the number of nodal
+diameters, k, is symmetric, and only its ﬁrst half (interblade phase angle from 0 to π) is normally plotted.
+Aerodynamic correction.
+In order to evaluate the aerodynamic correction of the vibration characteristics of the bladed disk it is
+convenient to ﬁrst perform in Eqn. (43) the following change of variables to a purely structural travelling
+wave basis
+X = PA,
+(51)
+with
+P=
+1
+√
+N
+
+
+P1ei( 2π1
+N )1
+. . .
+PNei( 2πN
+N
+)1
+...
+...
+P1ei( 2π1
+N )j
+. . .
+PNei( 2πN
+N
+)j
+...
+...
+P1ei( 2π1
+N )N
+. . .
+PNei( 2πN
+N
+)N
+
+
+and
+A=
+
+
+A1
+...
+Aj
+...
+AN
+
+
+,
+(52)
+and where the vectors Aj = [Aj1, . . . , Ajm]T contain the amplitudes of the diﬀerent travelling wave modes.
+The eigenvalue problem in Eqn. (43) takes now the form
+
+
+Ω2
+1 −ω2I
+. . .
+0
+...
+...
+...
+0
+. . .
+Ω2
+N −ω2I
+
+
+
+
+A1
+...
+AN
+
+= PHMaero(ω)P
+
+
+A1
+...
+AN
+
+,
+(53)
+with diagonal mass and stiﬀness matrices, see Eqs. (??) and (??), and block diagonal aerodynamic matrix
+PHMaero(ω)P =
+
+
+M1(ω)
+. . .
+0
+...
+...
+...
+0
+. . .
+MN(ω)
+
+,
+(54)
+ 
+ 
+6 - 24 
+RTO-EN-AVT-207 
+ 
+
+25
+VKI-LS Structural Design of Aircraft Engines
+4
+Flutter Stability
+as a result of the fact that the linearized aerodynamic ﬂow problem has also cyclic symmetry and,
+therefore, the modes with diﬀerent nodal diameters are completely independent.
+The fact that pressure travelling-waves with k nodal diameters are orthogonal to travelling-waves with
+j ̸= k nodal diameters, or in physical terms, that the work of pressure travelling-wave in the displacement
+of another travelling-wave is null, allows the diagonalization of the aerodynamic matrix in the TW basis.
+This makes that TWs are the aeroelastic modes of the tuned system. This fact has deep implications
+in the formulation of the problem and it is one of the reasons why unsteady aerodynamics is computed
+using a single passage in the TW basis.
+Modes with diﬀerent natural frequencies are orthogonal also.
+This is why bladed-disk are designed
+to separate mode families.
+Mode interaction is diﬃcult to predict an it is ultimately the instability
+mechanism of coalescence ﬂutter. This problem is sometimes impossible to avoid as it happens in vane
+packets, where several modes with nearly de same frequency exist for the same nodal diameter enabling
+the possibility of interacting among them. This is a very speciﬁc topic and it will not be adressed here.
+The aerodynamic terms are small and give rise to a small correction of the purely structural vibration
+frequencies. For a given structural frequency ω˜k˜j (corresponding to the ˜j-th travelling wave mode with
+˜k nodal diameters), its aerodynamically corrected counterpart ω is given by Eqn. (53), and it can be
+approximately estimated if one takes into account the following:
+1. The modes with a diﬀerent number of nodal diameters are decoupled and do not play any role in
+the correction of ω˜k˜j, that is,
+Ak = 0,
+for all
+k ̸= ˜k.
+(55)
+2. The ˜kj-th equation in Eqn. (53) reads
+(ω2
+˜kj −ω2)A˜kj =
+m
+X
+h=1
+[M˜k(ω)]jhA˜kh.
+(56)
+The corrected frequency ω is close to ω˜k˜j, but not to the other frequencies ω˜kj (we are implicitly
+assuming here that ω˜k˜j is well apart from the rest of the frequencies corresponding to the same
+number of nodal diameters ˜k). Therefore, if j ̸= ˜j the term (ω2
+˜kj −ω2) in the equation above is not
+small, but the aerodynamic terms, [M˜k(ω)]jh, are small and we can neglect them to obtain
+A˜kj = 0,
+for all
+j ̸= ˜j.
+(57)
+In other words, the rest of the travelling wave modes with ˜k nodal diameters and diﬀerent frequencies
+do not contribute either to the correction of the ω˜k˜j in ﬁrst approximation.
+Flutter Computational Environment
+There are a number of hierarchical approaches of increasing complexity and ﬁdelity to compute ﬂutter.
+The purpose here is not to review all these approaches and discuss their limitations and implications but
+to give the reader a perspective of what it could be considered has been the standard practice in the
+industry during the last decade, but that is still in application today.
+The standard approach today is to use the assumption that the aerodynamics gives rise just to a small
+correction of the purely structural modes. The ﬁrst step then is to compute using a FEM the natural
+frequencies and mode-shapes of the modes suspicious to suﬀer from ﬂutter and construct a modal data
+base.
+Simultaneously the base ﬂow for the operating condition of interest is computed using a non-
+linear RANS solver.The structural grid containing the mode-shapes is interpolated and transferred to the
+RTO-EN-AVT-207 
+6 - 25 
+ 
+
+5
+Advanced Topics
+VKI-LS Structural Design of Aircraft Engines
+26
+*.rhs
+NS−L = F
+DataBase
+Modal
+Compute
+Forcing
+Terms
+PLVIB
+3D N−L CFD
+Aero BCs
+Mean Flow
+Mesh Generator
+i   t
+ω
+X(x)e
+Moving Grid
+Aerodynamic
+Linear CFD
+Damping Curve
+Mistuning Effects
+(via *.wks)
+perturbation
+Unsteady
+N−L Friction
+Aero−sol
+CFD Grid
+Structural FEM
+Stable
+Θ
+σ
+ξmin
+σ
+Amplitude
+t
+Uncoupled Flutter System
+Figure 26: Flow Diagram of a flutter computational system based on a linear Uncoupled
+approach
+aerodynamic grid and the displacements in the aerodynamic grid, due to the displacements caused by
+the mode-shape in the aerodynamic surface, computed. The displacements together with the base-ﬂow
+solution and the natural frequency are transferred to a frequency domain linearise RANS solver. The main
+objective of using a linearised solver, as has been already explained, is to reduced the computational time.
+Moreover frequency domain solvers allow easier implementation of more accurate boundary conditions.
+Once the aerodynamic damping of the selected family of modes has been computed it is corrected using a
+reduced order model to account for mistuning. If after taking into account mistuning corrections the mode
+is unstable then it may be attempted to estimate the vibration amplitude of the rotor blade retaining
+the friction eﬀects due to the attachments.
+5
+Advanced Topics
+Flutter is deﬁned as an aeroelastic instability but the problem is actually much more complex. The linear
+formulation of the problem just allows to predict the behaviour of the system during the early stages
+of the problem when the vibration amplitudes are small enough.
+During this phase unstable modes
+grow exponentially with a growth rate dictated by the aerodynamics. The exponential growth of the
+perturbations can not be sustained in long term and when the vibration amplitude becomes large enough
+non-linear terms become to play a role and the vibration amplitude saturates at a ﬁnite amplitude.
+The diﬀerent scenarios that may take place are sketched in ﬁgure 27 (left). If the ﬂow is stable the
+vibration amplitude is zero since all the modes are stable and the perturbations decay to zero. when
+there are unstable modes several scenario are possible. If the instability is very strong and cannot be
+eﬀectively compensated by non-linear mechanisms the amplitude may become large enough to break the
+rotor blade. An intermediate situation is that the amplitude saturates at a ﬁnite amplitude. Then if
+the amplitude, and therefore the alternate stresses, is low enough the airfoil may sustain the vibration
+indeﬁnitely and ﬂutter may be acceptable since stresses caused by the limit cycle correspond to inﬁnite
+life in the Goodman diagram. Alternatively if the vibration amplitude is large enough the vibration may
+be sustained only for a ﬁnite time and the component has ﬁnite life.
+Figure 27 (middle) displays an experimental Campbell diagram of a bladed-disk undegoing ﬂutter. High
+level of alternate stresses may be seen at the frequency of the unstable mode for a wide range of the shaft
+speed. The change in the shaft speed of the turbine implies changes both in the pressure level and the
+incidence. The higher in the pressure level, and hence the density, at the inlet of the turbine the higher
+ 
+ 
+6 - 26 
+RTO-EN-AVT-207 
+ 
+
+27
+VKI-LS Structural Design of Aircraft Engines
+5
+Advanced Topics
+the vibration amplitude. In this particular cases ﬂutter is superimposed with forced response, but onlt
+at the crossings.
+When the rotor airfoils are aerodynamically unstable, the blade vibration grows up to a point in which
+the motion is non-linearly saturated by mechanical damping. For cantilever rotor blades this is due to
+the dry friction that takes place in the ﬁr-tree attachment since they are designed to avoid the contact
+between neighbouring shrouds or platforms. However in principle other devices such as under-platform
+dampers or cover plates may contribute to increase the damping of the rotor blade. In any case what is
+important at this point is to estimate the vibration level of the rotor blade, that ultimately will determine
+the life of the component. The vibration amplitude of the airfoil is assumed to remain small enough to
+neglect aerodynamic non-linear eﬀects.
+The eﬀect of friction on aerodynamically unstable rotor blades from a conceptual point of view was
+ﬁrst studied by Sinha and Griﬃn [5, 6]. To clarify some of the basic issues addressed in the present
+investigation it is interesting to review the main results obtained from a single degree of freedom problem.
+If the unsteady aerodynamics is linear, then the unsteady pressure scales with the vibration amplitude, δ,
+and hence the aerodynamic work per cycle scales as the square of the amplitude, Waero ∝δ2. The scaling
+of dry friction dissipation depends on the vibration amplitude.
+For very small vibration amplitudes
+(δ < δoff−set) the rotor blade is stuck on the attachment and the dissipation is null, provided that the
+material structural dissipation is neglected. For large vibration amplitudes there is a macro displacement
+of the rotor blade in the attachment. The tangential force is constant and therefore the work dissipated
+per cycle is proportional to the displacement, Wmacro ∝δ. Between both situations there is a regime,
+known as micro-slip, where only a fraction of the contact surface is sliding. Diﬀerent models exist to
+describe this behaviour (see for instance the Midlin’s model [7] to describe the contact between two elastic
+spheres). What is important to highlight at this stage is that the work dissipated per cycle is of the form
+Waero ∝δn, with n > 2, typically n = 3.
+The situation is sketched in Fig. When the rotor airfoils are aerodynamically unstable, the blade vibration
+grows up to a point in which the motion is non-linearly saturated by mechanical damping. For welded-
+in-pairs rotor blades this is due to the dry friction that takes place in the ﬁr-tree attachment since they
+are designed to avoid the contact between neighbouring shrouds or platforms. However in principle other
+devices such as under-platform dampers or cover plates may contribute to increase the damping of the
+rotor blade. In any case what is important at this point is to estimate the vibration level of the rotor
+blade, that ultimately will determine the life of the component. The vibration amplitude of the airfoil is
+assumed to remain small enough to neglect aerodynamic non-linear eﬀects.
+The eﬀect of friction on aerodynamically unstable rotor blades from a conceptual point of view was
+ﬁrst studied by Sinha and Griﬃn [5, 6]. To clarify some of the basic issues addressed in the present
+investigation it is interesting to review the main results obtained from a single degree of freedom problem.
+If the unsteady aerodynamics is linear, then the unsteady pressure scales with the vibration amplitude, δ,
+and hence the aerodynamic work per cycle scales as the square of the amplitude, Waero ∝δ2. The scaling
+of dry friction dissipation depends on the vibration amplitude.
+For very small vibration amplitudes
+(δ < δoff−set) the rotor blade is stuck on the attachment and the dissipation is null, provided that the
+material structural dissipation is neglected. For large vibration amplitudes there is a macro displacement
+of the rotor blade in the attachment. The tangential force is constant and therefore the work dissipated
+per cycle is proportional to the displacement, Wmacro ∝δ. Between both situations there is a regime,
+known as micro-slip, where only a fraction of the contact surface is sliding. Diﬀerent models exist to
+describe this behaviour (see for instance the Midlin’s model [7] to describe the contact between two elastic
+spheres). What is important to highlight at this stage is that the work dissipated per cycle is of the form
+Waero ∝δn, with n > 2, typically n = 3.
+The situation is sketched in Fig. 27 (right). The balance between the aerodynamic self-excitation and
+RTO-EN-AVT-207 
+6 - 27 
+ 
+
+5
+Advanced Topics
+VKI-LS Structural Design of Aircraft Engines
+28
+Flutter
+Forced Response
+Shaft speed
+Frequency
+Stable Aerodynamics
+Infinite Life
+No Life
+Finite Life
+Log(time)
+Amplitude
+Waero δ
+2
+Wmicro δ
+3
+Wmacroδ
+δoff−set
+micro
+W      = 0
+Wcycle
+δ
+1
+2
+3
+Figure 27: Summary of different features of the Flutter problem during the non-linear sat-
+urated regime. Left: Scheme of the potential situations that may be encountered
+in an aerodynamically unstable problem. Left: Experimental Campbell diagram
+of an aerodynamically unstable LP turbine.
+Right: Equilibrium chart between
+the friction dissipation and aerodynamic work.
+the dry friction provides either one or three solutions, depending on the relative value between them.
+The trivial solution, δ = 0, is unstable and any small perturbation from δ = 0, moves the system towards
+the solution 2, which is a stable cyclic limit. Solution 2 is an attractor and any perturbation of the
+cyclic limit comes back to the solution 2 unless we reach the amplitude δ3, which is an absolute stability
+limit, since the solution 3 is unstable. Alternatively, if the aerodynamic self-excitation is too large, or
+the friction work too low, the only solution is the trivial one and the system is unstable 27 (right).
+The balance between the aerodynamic self-excitation and the dry friction provides either one or three
+solutions, depending on the relative value between them. The trivial solution, δ = 0, is unstable and any
+small perturbation from δ = 0, moves the system towards the solution 2, which is a stable cyclic limit.
+Solution 2 is an attractor and any perturbation of the cyclic limit comes back to the solution 2 unless we
+reach the amplitude δ3, which is an absolute stability limit, since the solution 3 is unstable. Alternatively,
+if the aerodynamic self-excitation is too large, or the friction work too low, the only solution is the trivial
+one and the system is unstable.
+Te consequences of ﬂutter are quite diﬀerent depending on the blade-disk conﬁguration. Integral bladed-
+disks (Blisks) may only saturate aeromechanic instabilities by means of material damping that is typically
+of the order of 0.1% of the critical damping ratio. Cantilever blade-disks are saturated by dry friction in
+the contact surfaces such as ﬁr-tree attachments and interlock contact surfaces and therefore may sustain
+moderate levels of instability. Saturation may be obtained as well by means of aerodynamics non-linear
+eﬀects. This has been shown to happen is choke ﬂutter [4] which is a highly non-linear problem, but in
+this case the saturation mechanisms are completly diﬀerent.
+The prediction and/or simulation of the vibration amplitude caused by the saturation by mechanical
+damping of aerodynamically unstable bladed-diks is quite complex and it has been adressed just by a
+few authors. We have used numerical methods combined with friction prediction based on scaling laws
+tuned with engine data to predict the vibration amplitude of unstable low-pressure turbines [8, 9]. The
+phisics of the problem is not fully understood, espcially when there are several unstable modes however it
+is expected that the appearance of cost eﬀective fully-coupled non-linear methods will signiﬁcantly help
+to understand this complex dynamic problem [10]. Although a lot of research is still needed in this area
+we will present here some results which are useful to understand the nature of ﬂutter .The details may
+be found in [10].
+A free ﬂutter numerical experiment is considered, i.e.: there is no external periodic forcing applied in the
+simulation, but there are several unstable normal modes in the simulation. The main parameters of this
+case (aerodynamics, mass, stiﬀness, friction constants) have been set to reproduce a real LPT rotor; in
+particular, the exit Mach number is 0.57, the reduced frequency k is 0.12 and the critical damping ratio ξ
+for the most unstable mode is roughly 1.6% and corresponds to a ﬂap mode in the direction of the y axis
+(see ﬁgure 27, left). The unsteady aerodynamic simulations consider the 2-D mid-section of the rotor;
+ 
+ 
+6 - 28 
+RTO-EN-AVT-207 
+ 
+
+29
+VKI-LS Structural Design of Aircraft Engines
+5
+Advanced Topics
+Ma
+Ka
+Mf
+yj
+xj
+Ma
+Ka
+Mf
+yj+1
+xj+1
+Ka
+Mf
+xj−1
+yj−1
+Ma
+Kf
+Kf
+Kf
+−3
+−2
+−1
+0
+1
+2
+3
+ND 
+Unstable
+Stable
+0
+2
+4
+6
+8
+ξ (%)
+Linear 
+Figure 28: Description of a simplified fully coupled non-linear aeroelastic model.
+Left:
+Two-dimensional flow about a LPT airfoil linked to the ground by a non-linear
+spring. Centre: Critical damping ratio of the linear aerodynamics problems as a
+fucntion of the Nodal Diameter. Right: Time evolution of the airfoil DOFs.
+the grid for each passage contains approximately 7000 points. Taking into account the comparatively low
+frequencies of the vibration, the turbulence is simulated applying the algebraic Baldwin-Lomax model
+with a quasi-steady approach.
+The aerodynamic damping obtain using a series of linear analysis may be seen in Fig. 27, middle. It may
+be seen that the system is highly unstable due to the selected reduced frequency k = 0.12 which is very
+low and that several modes are unstable, the actual number depending on the number of airfoils of the
+conﬁguration. A slight discontinuity may be seen around IBPA= 0◦due to the acoustic resonances.
+The ﬁrst test case considers a domain with six sectors. The objective of simulating just six sectors is to
+observe the dynamics of a system with just two unstable modes. In this case we may see two pairs of
+backward and forward TWs for the ND = 1 and 2 plus the TWs corresponding with the ND zero and
+three, which are indistinguishable from the corresponding standing waves, totalizing six TWs. It may
+be appreciated in Fig. 29that the forward TWs corresponding with the ND = 1 and 2 are unstable but
+with a diﬀerent strength (ξND=1/ξND=2 ≃2.7) while the rest are stable. This diﬀerent growth rate of
+the two modes eases the derivation of conclusions and their tracking during the temporal evolution. For
+the initial condition of the simulation a single pair of blades is slightly displaced from its equilibrium
+position; this generates a perturbation in all the diﬀerent TWs.
+The vibration amplitudes of the airfoil DoFs using this methodology is shown in Fig. 27 (right). The
+time scale is normalized with the nominal vibration period of the rotor blades (i.e.: the period obtained
+linearizing the ﬁr-tree constraint and neglecting aerodynamic terms), making the horizontal axis roughly
+equivalent to the number of vibration periods. The vibration amplitude is normalized with an analytical
+estimate of the maximum vibration amplitude performed using the methodology described in [9]. In
+practical terms the reader may think that the vibration amplitde has been normalized using the maximum
+theoretical vibration amplitude. Notice that both simulations get remarkably similar results; after an
+initial development stage with an exponential growth of the amplitude, the vibration saturates at a
+constant amplitude.
+Figure 29 shows the solution post-processed using a wave-splitting method. Lines with diﬀerent colours
+denote the evolution of diﬀerent TWs. The solid lines show the evolution of the TWs using the fully
+coupled approach while dashed lines denote the simulation perform using the SUM approach. It may be
+noticed the nearly exponential growth/decay during the early stages (5-7 ﬁrst periods) of the simulation;
+this is in good agreement with classic linear aeroelasticity theory. In table 1 The critical damping ratio
+for the one nodal diameter forward traveling wave, obtained from the growth rate in the ﬁrst periods of
+RTO-EN-AVT-207 
+6 - 29 
+ 
+
+5
+Advanced Topics
+VKI-LS Structural Design of Aircraft Engines
+30
+0
+10
+20
+30
+40
+50
+60
+70
+Normalized Time
+10
+-4
+10
+-3
+10
+-2
+10
+-1
+10
+0
+Normalized Traveling Wave Amplitude
+ND =   0
+ND = +1
+ND = +2
+ND = +3
+ND =  -2
+ND =  -1
+ND=0
+ND=+1
+ND=+2
+ND=+3
+ND=-2
+ND=-1
+Figure 29: Time evolution of the traveling-wave amplitudes in a six-sector computational
+domain
+Table 1: Six-sector computational domain:
+critical damping ratio for the most unstable
+traveling wave
+Approach
+ξ
+Fully Coupled
+1.79%
+Semi-Uncoupled
+1.53%
+Linear
+1.56%
+the simulation, can be compared with the results from a classical linear methodology. The agreement is
+nearly perfect for the semi-uncoupled methodology (see [10], but the diﬀerences with the fully coupled
+method are roughly 15%. The most unstable mode corresponds to the ND=+1. This is consistent with
+the results displayed in Fig. 29.
+The behaviour of the traveling wave with nodal diameter zero (black line in Fig. 29) requires further
+explanation. It must be taken into account that a steady aerodynamic force (lift) with a spatial pattern
+corresponding to the ND = 0 appears in the simulation. This force was not taken into account in the
+determination of the initial location of the airfoils and in the long run it induces an oﬀ-set between
+the initial and ﬁnal position of the airfoils, rather than an oscillation in the zero nodal diameter, which
+justiﬁes the weird behaviour shown in the graph.
+As the vibration amplitudes increase non-linear eﬀects begin to play a greater role (10-30 periods into the
+simulation). In general, non linear terms allow the interaction of patterns with diﬀerent nodal diameters.
+So, even though most waves should decay according to the linear theory, once the most unstable mode
+reaches a large enough vibration amplitude the system does not behave any longer linearly.
+Notice
+however that, in any case, the vibration amplitudes of the stable waves are 2-3 orders of magnitude
+smaller than the amplitude of the most unstable mode.
+Close to the saturation (30-60 periods into the simulation) the growth rates for the unstable modes
+decrease. Interestingly, while the most unstable mode tends towards a constant amplitude, the energy
+of the other unstable mode is drained and its amplitude limited to a fairly small value. This process is
+still active even after the envelope of the physical amplitude of the blades has already reached saturation
+(about period 40). This means that there is a non-linear process that adjusts the vibration phase of the
+airfoils at a fairly constant vibration amplitude.
+ 
+ 
+6 - 30 
+RTO-EN-AVT-207 
+ 
+
+31
+VKI-LS Structural Design of Aircraft Engines
+5
+Advanced Topics
+0
+2
+4
+6
+8
+10
+Normalized Frequency
+0
+0.25
+0.5
+0.75
+1
+Normalized Amplitude
+Blade DOF
+Fir-tree DOF
+Time
+-0.15
+-0.05
+0.05
+0.15
+Amplitude
+Time
+-1.5
+-0.5
+0.5
+1.5
+Amplitude
+Figure 30: Six-sector model: temporal harmonic content of the periodic solution
+−18
+−180
+−9
+−90
+0
+0
+90
+180
+ND 
+IBPA (
+Unstable
+Stable
+o)
+−2
+0
+2
+4
+6
+8
+ξ (%)
+Linear 
+18
+9
+Figure 31: Aerodynamic Damping for the 36-sector model
+This conclusion is quite remarkable since although in principle it could be thought that the saturated
+solution could be made up of a blend of the two unstable modes, the non linearity of the ﬁr-tree ﬁlters
+out the second and transfer its energy to the most unstable mode. The conjecture is that when more
+than two unstable modes exist a similar mechanisms will concentrate all the energy in a single mode as
+well.
+Once the amplitude is saturated and most of the energy (more than 99.9%) is concentrated into the
+most unstable mode the motion is nearly periodic. The results of performing a FFT using a sampling
+window of roughly 6 periods can be seen in ﬁgure 30. Notice that for the blade DoF the motion is nearly
+sinusoidal, with negligible presence of higher harmonics. On the other hand, the ﬁr-tree DoF which is
+directly connected to the non-linear constraint shows signiﬁcant values of the ﬁrst odd harmonics. Using
+regression the best ﬁtting for the blade frequency has been found to be 2.61% higher than the nominal
+vibration frequency.
+Large Computational Domain
+This case is identical to the six-sector model in the sense that both, the aerodynamic and structural
+parameters are the same, the sole diﬀerence is that we are including in the model thirty-six sectors that
+physically corresponds to 72 rotor blades welded in pairs instead of six. Since we have now more DoFs
+the dynamics of the problem is richer and more complex. The unsteady aerodynamics associated to this
+case is also that displayed in Fig. 31, however since in this conﬁguration we may accommodate more
+modes we have consequently more unstable modes. Actually the forward traveling waves corresponding
+RTO-EN-AVT-207 
+6 - 31 
+ 
+
+5
+Advanced Topics
+VKI-LS Structural Design of Aircraft Engines
+32
+Figure 32: 36 sector model: time evolution of the traveling waves
+to the ND = 2 −13, both included , are unstable. These twelve unstable modes have diﬀerent critical
+damping ratio as it may be appreciated in Fig. 31.
+The vibration amplitude of the airfoils saturates at nearly the same value than the model with six sectors.
+The same is true for the time needed to reach the amplitude saturation value. This eﬀectively means
+that the growth rate of the instability in both cases is roughly the same, as could be expected, since the
+six-sector model contains nearly the most unstable mode.
+Nevertheless, a more in depth analysis based on the tracking of the traveling-wave amplitudes (see Fig.
+32) reveals that, even if the airfoil amplitudes have reached their ﬁnal saturated value, there is still
+energy exchange among the diﬀerent unstable waves. This is clearly seen between the non-dimensional
+time 100 and 150, where it may be appreciated that many modes are still active. Every line of Figs. 32
+and 33 denotes the evolution of an aeroelastic mode (i.e.: a TW with a prescribed wave-length or ND),
+The colour code is consistent between both ﬁgures, unfortunaely since every ﬁgure has 36 lines it is not
+appropriate to include the leyends in them. The reader muy pay attention to the colour code to compare
+the diﬀerent ﬁgures.
+The aerodynamic damping of the system obtained by two independent methods: (i) The RANS frequency
+domain linear solver prescribing the frequency that is obtained assuming that the non-linear contact is
+ﬁxed (solid line) and (ii) The analysis of the ﬁrst stages of the fully coupled non-linear method are very
+similar being the discrepancies associated to a slight shift of the vibration frequencies between the non-
+linear and the linear method and the non-linearity itself. The main conclusion is that the aerodynamics
+of the system is linear since the fully non-linear time marching method provides nearly the same results
+than the frequency domain linear methodology.
+The results depicted in Fig. 32 are not fully satisfactory since the do not allow to conclude which is the
+ﬁnal state of the system. Our conjecture, that we have already used in previous works [8, 9], is that the
+ﬁnal state of a bladed-disk system with multiple unstable modes of the same family in the absence of a
+periodic forcing, includes just the most unstable mode. Because of the limited amount of simulation time
+the end time of Fig. 32 corresponds approximately to 150 periods.
+The results obtained for characteristic times of the order of several thousands of periods may be seen in
+Fig. 33). It may be appreciated than for very long times just a single TW survives which, incidentally,
+was the one predicted as most unstable by the linear method (the forward TW of the 7th nodal diameter).
+This simulation, together with the one performed for the six-sector computational domain, conﬁrms that
+the conjecture is true. The initial stages of the fully-non linear simulation are shown on the bottom of the
+same ﬁgure. It is seen that the dynamics is the same than that of the semi-uncoupled approach and the
+ 
+ 
+6 - 32 
+RTO-EN-AVT-207 
+ 
+
+33
+VKI-LS Structural Design of Aircraft Engines
+References
+Figure 33: 36 sector model: long time evolution of the traveling waves
+non-linearity is ﬁltering out the solution. There are clear indications that only a single model will survive
+in the long term. This simulation may be seen as a ﬁnal indication that the conjecture that we formulated
+is true. Actually the most unstable mode, ND⋆, was not perturbed at all while ND = ND⋆± 1 were.
+However the dynamics select the most unstable mode although the were other very similar much larger
+at the initial stage.
+Acknowledgments
+I would like to thank here all the people that has contributed during many years to develop the under-
+standing of Aeroelasticity both at Industria de Turbopropulsores S.A. and Universidad Politécnica de
+Madrid. This includes a large number of Master and Ph.D students and ITP research engineers. Among
+all of them I would like specially to thank Juan Manuel Gallardo that has been involved in the develop-
+ment of all the ITP aeroelasticiy system from the very beginning. I am also in great debt with Carlos
+Vasco that developed the linear version of the aerodynamic suite of codes known as Mu2s2T.
+References
+[1] Corral, R., Gallardo, J. M., and Martel, C., “A Conceptual Flutter Analysis of a Packet f Vanes
+Using a Mass-Spring Model,” Journal of Turbomachinery, Vol. 131, April 2009, pp. 021016–1–7.
+[2] Antona, R., Corral, R., Gallardo, J., and Martel, C., “Eﬀect of the Structural Coupling on the Flutter
+Onset of a Sector of Low-Pressure Turbine Vanes,” ASME Paper GT2010-23037, Proceedings of the
+55tht ASME Gas Turbine and Aero engine Congress, Exposition and Users Symposium, Glasgow,
+UK, June 2010.
+[3] Corral, R., Gallardo, J., and Vasco, C., “Aeroelastic Stability of Welded-in-Pair Low Pressure Turbine
+Rotor Blades: A Comparative Study Using Linear Methods,” Journal of Turbomachinery, Vol. 129,
+January 2007, pp. 72–83.
+[4] Zhai, Y., Bladh, R., and Dyverfeldt, G., “Mistuned Aeroelastic Stability Assesment of an Industrial
+Compressor Blade,” ASME Paper GT2011-45800, Proceedings of the 56th ASME Gas Turbine and
+Aero engine Congress, Exposition and Users Symposium, Vancouver, Canada, June 2011.
+[5] Sinha, A. and Griﬃn, J. H., “Friction Damping of Flutter in Gas Turbine Engine Airfoils,” AIAA
+Journal of Aircraft, Vol. 20, April 1983, pp. 372–376.
+RTO-EN-AVT-207 
+6 - 33 
+ 
+
+References
+VKI-LS Structural Design of Aircraft Engines
+34
+[6] Sinha, A. and Griﬃn, J. H., “Eﬀects of Friction Dampers on Aerodynamically Unstable Rotor Stages,”
+AIAA Journal, Vol. 23, No. 2, Feb 1985, pp. 262–270.
+[7] Midlin, R. D. and Deresiewicz, H., “Elastic Spheres in Contact Under Varying Oblique Forces,”
+Journal of Applied Mechanics, Vol. 20, 1953, pp. 327–344.
+[8] Corral, R. and Gallardo, J. M., “A Methodology for the Vibration Amplitude Prediction of Self-
+Excited Rotors Based on Dimensional Analysis,” ASME Paper 20005-GT-90668, Proceedings of the
+51st ASME Gas Turbine and Aero engine Congress, Exposition and Users Symposium, Barcelona,
+Spain, May 2006.
+[9] Corral, R. and Gallardo, J., “Veriﬁcation of the Vibration Amplitude Prediction of Self-Excited LPT
+Rotor Blades Using a Fully Coupled Time-Domain Non-Linear Method and Experimental Data,”
+ASME Paper 2008-GT-51416, Proceedings of the 51st ASME Gas Turbine and Aero engine Congress,
+Exposition and Users Symposium, Berlin, Germany, June 2008.
+[10] Corral, R. and Gallardo, J., “Non-Linear Dynamics of Multi-Mode Unstable Bladed-Disks: Part I
+- Description of a Canonical Model and Phenomenological Results,” ASME Paper GT2011-22943,
+Proceedings of the 56tht ASME Gas Turbine and Aero engine Congress, Exposition and Users
+Symposium, Vancouver, Canada, June 2011.
+ 
+ 
+6 - 34 
+RTO-EN-AVT-207 
+ 
+ 

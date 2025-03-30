@@ -13,3 +13,7 @@ def max_width_():
     """,
         unsafe_allow_html=True,
     )
+
+
+# Button numbering guide
+# Button_A_B_C where A is the column number, B is the tab number, C is the button index

@@ -1,0 +1,7 @@
+add remaining dependent variables as fultter analysis object variables. basically calculate it in the flutter analysis object even though it is only used for parametric studies so its easier to code ps part byu only calling and populating variables instead of redoing calculations
+
+add help to all input components where applicable
+
+dynamic page sizing based on current screen dimensions... or resolution... not sure
+
+use svg for icons to minimize storage space
